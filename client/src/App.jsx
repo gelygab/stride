@@ -4,6 +4,7 @@ import './App.css';
 // import { useEffect } from 'react';
 import Navbar from './components/navbar';
 import Title from './components/title'
+import About from './components/about'
 
 
 const  App = () => {
@@ -16,6 +17,7 @@ const  App = () => {
     <div className='body'>
       <Navbar />
       <Title />
+      <About />
     </div>
   );
 }
