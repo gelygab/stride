@@ -13,7 +13,7 @@ const  App = () => {
   // }, [])
   
   return (
-    <div>
+    <div className='body'>
       <Navbar />
       <Title />
     </div>
