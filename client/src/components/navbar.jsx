@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav className={styles.navbar}>
             <img src={assets.logo} alt=''></img>
             <button className={styles.burger}>☰</button>
-            <ul className={styles.navlinks1}>
+            <ul className={styles.navlinks}>
                 <a href=''><li>Home</li></a>
                 <a href=''><li>How it works</li></a>
                 <a href=''><li>Impact</li></a>
