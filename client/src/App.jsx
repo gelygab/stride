@@ -3,6 +3,7 @@ import './App.css';
 // import axios from "axios";
 // import { useEffect } from 'react';
 import Navbar from './components/navbar';
+import Title from './components/title'
 
 
 const  App = () => {
@@ -14,6 +15,7 @@ const  App = () => {
   return (
     <div>
       <Navbar />
+      <Title />
     </div>
   );
 }
