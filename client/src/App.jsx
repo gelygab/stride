@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/navbar';
 import Title from './components/title';
 import Team from './components/team/team';
+import About from './components/about'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <section id="home" className="homeSection">
           <Title />
         </section>
+        <About />
         <Team />
       </main>
     </div>
