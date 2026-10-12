@@ -130,3 +130,47 @@
         inset 0 -20px 25px 0px #11A7A3,
         inset 0 -99px 5px 0px black;
 }
+
+/* Responsive Breakpoint for Tablet */
+@media (max-width: 900px) {
+    
+    .leftSide, .rightSide {
+        padding: 70px 55px;
+        width: 38%; 
+    }
+    .aboutH1 {
+        font-size: 1rem;
+    }
+    
+    .aboutH2 {
+        font-size: 1.1rem;
+    }
+
+    .aboutH5 {
+        font-size: 0.6rem;
+    }
+}
+
+/* Responsive Breakpoint for Phone */
+@media (max-width: 672px) {
+    .cardContainer {
+        flex-direction: column;
+    }
+    
+    .leftSide, .rightSide {
+        padding: 70px 55px; 
+        width: 65%;
+    }
+
+    .aboutH1 {
+        font-size: 1rem;
+    }
+    
+    .aboutH2 {
+        font-size: 1.1rem;
+    }
+
+    .aboutH5 {
+        font-size: 0.6rem;
+    }
+}
