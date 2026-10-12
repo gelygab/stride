@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'inter one mono', monospace;
 }
 
 .burger {
@@ -41,34 +41,51 @@ img {
     overflow: hidden;
 }
 
-.navlinks a {
+.navlinks li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.navButton,
+.dashboardButton {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: gray;
+    font: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.navButton {
+    appearance: none;
     display: flex;
     align-items: center;
     height: 100%;
     padding: 0 24px;
-    text-decoration: none;
-    color: gray;
     border-radius: 3em;
-    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: gray;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.navlinks a:first-child {
+.navlinks li:first-child .navButton {
     border-top-left-radius: 3em;
     border-bottom-left-radius: 3em;
 }
 
-.navlinks a:hover {
+.navButton:hover,
+.dashboardButton:hover {
     color: white;
     box-shadow: -3px 0 10px white, 3px 0 10px white;
 }
 
-.dashboard a:hover {
-    color: white;
-    box-shadow: -6px 0 40px white, 6px 0 10px white;
-}
-
-.navlinks a:active, .navlinks a.active,
-.dashboard a:active, .dashboard a.active {
+.navButton:active, .navButton.active,
+.dashboardButton:active, .dashboardButton.active {
     background-image: linear-gradient(to right, #9BE8E6, #11A7A3); 
     color: #0b1315;
 }
@@ -97,14 +114,14 @@ img {
     width: 20px;
     height: 20px;
 }
-.dashboard a {
+
+.dashboardButton {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
     width: 100%;
     padding: 0 24px;
-    text-decoration: none;
     color: gray;
     border-radius: 2em;
     transition: all 0.2s ease;
