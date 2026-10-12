@@ -1,4 +1,30 @@
+html, body, #root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #000d0c;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000d0c;
+  overflow-x: hidden;
+}
+
 .App {
+  width: 100%;
+  min-height: 100vh;
   text-align: center;
-  background-image: black;
+  background: #000d0c;
+}
+
+.homeSection {
+  min-height: 100vh;
+  scroll-margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body, #root {
+    scroll-behavior: auto;
+  }
 }
