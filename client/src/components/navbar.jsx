@@ -5,6 +5,7 @@ import styles from './navbar.module.css';
 const Navbar = ({ onNavigate }) => {
     const navItems = [
         { label: 'Home', view: 'home' },
+        { label: 'About', view: 'about' },
         { label: 'How it works', view: 'how-it-works' },
         { label: 'Impact', view: 'impact' },
         { label: 'Team', view: 'team' },
@@ -31,6 +32,7 @@ const Navbar = ({ onNavigate }) => {
                             </button>
                         )}
                     </li>
+
                 ))}
             </ul>
             <div className={styles.dashboard}>
