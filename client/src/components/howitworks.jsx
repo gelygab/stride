@@ -38,7 +38,7 @@ const steps = [
 
 const HowItWorks = () => {
     return (
-        <section className={styles.howItWorksSection}>
+        <section id="how-it-works" className={styles.howItWorksSection}>
             <div className={styles.lampGlow}></div>
             <div className={styles.spotlightBeam}></div>
 
