@@ -4,12 +4,15 @@ import Navbar from './components/navbar';
 import Title from './components/title';
 import Team from './components/team/team';
 import About from './components/about'
+import Impact from './components/impact';
 
 
 const App = () => {
   const handleNavigate = (view) => {
     const target = view === 'team'
       ? document.getElementById('team')
+      : view === 'impact'
+      ? document.getElementById('impact')
       : document.getElementById('home');
 
     target?.scrollIntoView({
@@ -26,6 +29,7 @@ const App = () => {
           <Title />
         </section>
         <About />
+        <Impact />
         <Team />
       </main>
     </div>
