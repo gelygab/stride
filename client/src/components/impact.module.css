@@ -93,7 +93,7 @@
         scale(var(--s));
     border-radius: 34px;
     background:
-        radial-gradient(circle at 10% 0%, rgba(84, 206, 240, 0.45), transparent 32%),
+        radial-gradient(circle at 10% 0%, rgba(4, 238, 255, 0.753), transparent 32%),
         linear-gradient(
             180deg,
             #064743 0%,
