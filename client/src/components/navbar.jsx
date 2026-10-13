@@ -5,6 +5,7 @@ import styles from './navbar.module.css';
 const Navbar = ({ onNavigate }) => {
     const navItems = [
         { label: 'Home', view: 'home' },
+        { label: 'About', view: 'about' },
         { label: 'How it works', view: 'how-it-works' },
         { label: 'Impact', view: 'impact' },
         { label: 'Team', view: 'team' },
@@ -17,19 +18,9 @@ const Navbar = ({ onNavigate }) => {
             <ul className={styles.navlinks}>
                 {navItems.map(({ label, view }) => (
                     <li key={label}>
-                        {view === 'team' ? (
-                            <a href="#team" className={styles.navButton}>
-                                {label}
-                            </a>
-                        ) : (
-                            <button
-                                type="button"
-                                className={styles.navButton}
-                                onClick={() => onNavigate(view)}
-                            >
-                                {label}
-                            </button>
-                        )}
+                        <a href={`#${view}`} className={styles.navButton}>
+                            {label}
+                        </a>
                     </li>
                 ))}
             </ul>
