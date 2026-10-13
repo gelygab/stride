@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/navbar';
 import Title from './components/title';
+import HowItWorks from './components/howitworks'
 import Team from './components/team/team';
 import About from './components/about'
 
@@ -25,6 +26,7 @@ const App = () => {
         <section id="home" className="homeSection">
           <Title />
         </section>
+        <HowItWorks />
         <About />
         <Team />
       </main>
