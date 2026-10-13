@@ -1,4 +1,22 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background-color: black;
+}
+
+#root,
+.body {
+  min-height: 100vh;
+}
+
+.body {
+  background-color: black;
+}
+
 .App {
+  width: 100%;
+  min-height: 100vh;
   text-align: center;
-  background-image: black;
 }

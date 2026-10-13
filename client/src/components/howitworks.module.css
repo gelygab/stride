@@ -16,7 +16,25 @@ padding: 1rem 1rem 6rem;
 display: flex;
 flex-direction: column;
 align-items: center;
-font-family: 'Inter One', monospace;
+font-family: 'inter one mono', monospace;
+opacity: 0;
+  animation: pageFadeIn 2s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+} 
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 .howItWorksSection::before {
@@ -207,6 +225,66 @@ opacity: 0.85;
 line-height: 1.4;
 margin: 0;
 }
+
+/* Fade-in transitions */ 
+.howItWorksSection {
+  animation: sectionReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.headerContainer {
+  animation: headerReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes headerReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.cardFeaturedInner {
+  animation: cardReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.975);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 
 /* Responsive Breakpoint for Tablet */
 @media (max-width: 900px) {
