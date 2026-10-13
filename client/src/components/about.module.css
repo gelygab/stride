@@ -1,3 +1,19 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.fadeElement {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.fadeElement.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .aboutBackground {
     background-color: #000000;
     position: relative;

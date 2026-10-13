@@ -18,21 +18,10 @@ const Navbar = ({ onNavigate }) => {
             <ul className={styles.navlinks}>
                 {navItems.map(({ label, view }) => (
                     <li key={label}>
-                        {view === 'team' ? (
-                            <a href="#team" className={styles.navButton}>
-                                {label}
-                            </a>
-                        ) : (
-                            <button
-                                type="button"
-                                className={styles.navButton}
-                                onClick={() => onNavigate(view)}
-                            >
-                                {label}
-                            </button>
-                        )}
+                        <a href={`#${view}`} className={styles.navButton}>
+                            {label}
+                        </a>
                     </li>
-
                 ))}
             </ul>
             <div className={styles.dashboard}>
