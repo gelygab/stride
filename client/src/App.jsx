@@ -29,8 +29,8 @@ const App = () => {
         <section id="home" className="homeSection">
           <Title />
         </section>
-        <HowItWorks />
         <About />
+        <HowItWorks />
         <Impact />
         <Team />
       </main>
