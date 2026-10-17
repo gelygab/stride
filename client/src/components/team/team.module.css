@@ -22,6 +22,64 @@
   scroll-margin-top: 0;
 }
 
+/* Fade-in Transitions */
+.teamPage {
+  animation: teamPageReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+}
+
+@keyframes teamPageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.header {
+  animation: teamHeaderReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes teamHeaderReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.folderWrap {
+  animation: teamFolderReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes teamFolderReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.975);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 .visible {
   opacity: 1;
 }
