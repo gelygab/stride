@@ -152,7 +152,7 @@ z-index: 20;
 }
 
 /* Scattered fanned card */
-.card1 { transform: translateX(-550px) translateY(-140px) rotate(20deg); z-index: 1; }
+.card1 { transform: translateX(-540px) translateY(-140px) rotate(20deg); z-index: 1; }
 .card2 { transform: translateX(-295px) translateY(50px) rotate(-11deg); z-index: 2; }
 .card3 { transform: translateX(-90px) translateY(100px) rotate(-3deg); z-index: 3; }
 .card4 { transform: translateX(110px) translateY(90px) rotate(5deg); z-index: 4; }
@@ -160,12 +160,12 @@ z-index: 20;
 .card6 { transform: translateX(540px) translateY(-130px) rotate(-20deg); z-index: 1; }
 
 /* Hover effects fanned cards */
-.card1:hover { transform: translateX(-470px) translateY(-160px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card2:hover { transform: translateX(-295px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
+.card1:hover { transform: translateX(-540px) translateY(-140px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card2:hover { transform: translateX(-270px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
 .card3:hover { transform: translateX(-90px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
 .card4:hover { transform: translateX(110px) translateY(70px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card5:hover { transform: translateX(310px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card6:hover { transform: translateX(470px) translateY(-150px) rotate(0deg); z-index: 10; transition: 0.4s ease; }    
+.card5:hover { transform: translateX(270px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card6:hover { transform: translateX(540px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }     
 
 /* inner card states */
 .cardFeaturedInner {
@@ -345,7 +345,7 @@ margin: 0;
   }
 
   .card1 {
-    transform: translateX(-550px) translateY(-140px) rotate(10deg);
+    transform: translateX(-300px) translateY(-100px) rotate(10deg);
   }
 
   .card2 {
@@ -367,16 +367,16 @@ margin: 0;
   .card6 {
     transform: translateX(270px) translateY(-90px) rotate(-10deg);
   }
-}
 
-/* Hover effects fanned cards */
-.card1:hover { transform: translateX(-460px) translateY(-160px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card2:hover { transform: translateX(-270px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
+  /* Hover effects fanned cards */
+.card1:hover { transform: translateX(-250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card2:hover { transform: translateX(-250px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
 .card3:hover { transform: translateX(-90px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
 .card4:hover { transform: translateX(110px) translateY(70px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card5:hover { transform: translateX(270px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card6:hover { transform: translateX(540px) translateY(-170px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
+.card5:hover { transform: translateX(250px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card6:hover { transform: translateX(250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
 
+}
 
 /* Responsive Breakpoint for Phone */
 @media (max-width: 672px) {
