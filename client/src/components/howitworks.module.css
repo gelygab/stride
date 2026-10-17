@@ -345,7 +345,7 @@ margin: 0;
   }
 
   .card1 {
-    transform: translateX(-270px) translateY(-90px) rotate(10deg);
+    transform: translateX(-550px) translateY(-140px) rotate(10deg);
   }
 
   .card2 {
@@ -370,12 +370,12 @@ margin: 0;
 }
 
 /* Hover effects fanned cards */
-.card1:hover { transform: translateX(-150px) translateY(-25px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card1:hover { transform: translateX(-460px) translateY(-160px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
 .card2:hover { transform: translateX(-270px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
 .card3:hover { transform: translateX(-90px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
 .card4:hover { transform: translateX(110px) translateY(70px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
 .card5:hover { transform: translateX(270px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card6:hover { transform: translateX(150px) translateY(-25px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
+.card6:hover { transform: translateX(540px) translateY(-170px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
 
 
 /* Responsive Breakpoint for Phone */
