@@ -5,12 +5,15 @@ import Title from './components/title';
 import HowItWorks from './components/howitworks'
 import Team from './components/team/team';
 import About from './components/about'
+import Impact from './components/impact';
 
 
 const App = () => {
   const handleNavigate = (view) => {
     const target = view === 'team'
       ? document.getElementById('team')
+      : view === 'impact'
+      ? document.getElementById('impact')
       : document.getElementById('home');
 
     target?.scrollIntoView({
@@ -26,8 +29,9 @@ const App = () => {
         <section id="home" className="homeSection">
           <Title />
         </section>
-        <HowItWorks />
         <About />
+        <HowItWorks />
+        <Impact />
         <Team />
       </main>
     </div>
