@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter one', monospace;
+    font-family: 'intel one mono', monospace
 }
 
 .titlebackground {
@@ -18,7 +18,7 @@
     padding-top: 141.25px;     /* Push text down manually (Navbar height + extra) */
 }
 
-h1, h2 {
+.titleH1, .titleH2 {
     color: white;
     text-align: center;
     justify-content: center;
@@ -29,7 +29,7 @@ h1, h2 {
     z-index: 100; /* Ensures it sits on top of the waves */
 }
 
-h2 {
+.titleH2 {
     background-image: linear-gradient(to bottom, white, #11A7A3); 
     color: transparent;
     background-clip: text;
@@ -37,9 +37,8 @@ h2 {
     z-index: 100; /* Ensures it sits on top of the waves */
 }
 
-h5 {
-    display: flex;
-    color: rgb(54, 53, 53);
+.titleH5 {
+    color: gray;
     text-align: center;
     /* border: 1px solid white; */
     padding: 35px 35px 0 35px;
@@ -56,20 +55,42 @@ h5 {
     padding-top: 80px;
     align-items: center;
 }
-@keyframes fade-up {
-    0% {
+
+/* Fade-in Transitions */
+.background {
+    animation: backgroundReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+}
+
+@keyframes backgroundReveal {
+    from {
         opacity: 0;
-        transform: translateY(30px) scale(0.95);
+        transform: translateY(60px);
+        filter: blur(6px);
     }
-    100% {
+    to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
+        filter: blur(0);
     }
 }
 
-.introTitle {
-    animation: fade-up 0.5s ease forwards;
-    padding-top: 20px;
-    position: relative;
-    z-index: 100; /* Ensures it sits on top of the waves */
+.titleH1, .titleH2, .titleH5 {
+    animation: headingReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 90%;
+}
+
+@keyframes headingReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }

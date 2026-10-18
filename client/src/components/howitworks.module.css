@@ -1,0 +1,437 @@
+/* Base and background */
+.howItWorksSection {
+position: relative;
+width: 100%;
+min-height: 100vh;
+background:
+radial-gradient(
+    ellipse at top center,
+    rgba(1, 21, 26, 0.45) 0%,
+    rgba(0, 28, 30, 0.9) 25%,
+    #031415 55%,
+    #01090a 100%
+);
+overflow: hidden;
+padding: 1rem 1rem 6rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+font-family: 'inter one mono', monospace;
+opacity: 0;
+  animation: pageFadeIn 2s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+} 
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.howItWorksSection::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -280px;
+  transform: translateX(-50%);
+  width: 1400px;
+  height: 1000px;
+
+  background:
+  radial-gradient(
+      ellipse at center,
+      rgba(4, 80, 87, 0.85) 30%,
+      rgba(15, 97, 93, 0.45) 75%,
+      rgba(20, 247, 255, 0.15) 85%,
+      transparent 85%
+  );
+
+  filter: blur(70px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* header container*/
+.headerContainer {
+position: relative;
+z-index: 5;
+text-align: center;
+margin-bottom: -0.5rem;
+margin-top: 2.5rem;
+}
+
+.spotlightBeam {
+    position: absolute;
+    inset: 0;
+    filter: blur(50px);
+    z-index: 1;
+}
+
+.Title {
+font-size: clamp(2rem, 4.5vw, 2.5rem);
+font-weight: 600;
+color: #ffffff;
+letter-spacing: -0.03em;
+margin: 0 0 0 0;
+line-height: 0.95;
+}
+
+.workTitle {
+font-size: clamp(3.5rem, 8vw, 5.5rem);
+font-weight: 700;
+color: #ffffff;
+letter-spacing: -0.03em;
+margin: 0 0 0.4rem 0;
+line-height: 0.95;
+}
+
+.subtitle {
+font-size: clamp(1.25rem, 1.3vw, 1.1rem);
+color: #ffffff;
+opacity: 0.95;
+font-weight: 400;
+margin: 0;
+}
+
+/*fan container for cards */
+.cardsFanContainer {
+position: relative;
+z-index: 3;
+display: flex;
+justify-content: center;
+align-items: center;
+max-width: 1200px;
+width: 100%;
+height: 440px;
+perspective: 1400px;
+margin-top: 2rem;
+}
+
+/* card shapes*/
+.glassCard {
+position: absolute;
+width: 215px;
+height: 340px;
+background: linear-gradient(155deg, rgba(20, 173, 184, 0.12) 0%, rgba(4, 44, 47, 0.4) 100%);
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+border: 1.5px solid rgba(94, 234, 234, 2);
+border-radius: 18px;
+padding: 1.25rem 0.85rem;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+transform-origin: bottom center;
+}
+
+.glassCard {
+  box-shadow:
+    0 0 25px rgba(94, 234, 234, 0.15),
+    0 30px 60px -12px rgba(0,0,0,0.6),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+}
+
+/* Hover effects gradient border */
+.glassCard:hover {
+border-color: rgba(94, 234, 234, 10);
+z-index: 20;
+  box-shadow:
+    0 0 50px rgba(94, 234, 234, 2),
+    0 40px 70px -25px rgba(20, 184, 181, 2);
+}
+
+/* Scattered fanned card */
+.card1 { transform: translateX(-540px) translateY(-140px) rotate(20deg); z-index: 1; }
+.card2 { transform: translateX(-295px) translateY(50px) rotate(-11deg); z-index: 2; }
+.card3 { transform: translateX(-90px) translateY(100px) rotate(-3deg); z-index: 3; }
+.card4 { transform: translateX(110px) translateY(90px) rotate(5deg); z-index: 4; }
+.card5 { transform: translateX(310px) translateY(30px) rotate(13deg); z-index: 2; }
+.card6 { transform: translateX(540px) translateY(-130px) rotate(-20deg); z-index: 1; }
+
+/* Hover effects fanned cards */
+.card1:hover { transform: translateX(-540px) translateY(-140px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card2:hover { transform: translateX(-270px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
+.card3:hover { transform: translateX(-90px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card4:hover { transform: translateX(110px) translateY(70px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card5:hover { transform: translateX(270px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card6:hover { transform: translateX(540px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }     
+
+/* inner card states */
+.cardFeaturedInner {
+background: rgba(12, 38, 39, 0.55);
+border: 1px solid rgba(94, 234, 229, 2);
+border-radius: 12px;
+width: 100%;
+height: 100%;  
+padding: 1rem 0.75rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.90);
+}
+
+.cardContent {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+height: 100%;
+width: 100%;
+padding-top: 1rem;
+}
+
+.imageWrapper {
+width: 75px;
+height: 75px;
+background: rgba(13, 143, 148, 0.25);
+border: 1px solid rgba(94, 222, 234, 2);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1rem;
+box-shadow: inset 0 2px 4px rgba(255, 255, 255, 1);
+}
+
+.cardImage {
+width: 60px;
+height: 60px;
+object-fit: contain;
+filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.cardTitle {
+font-size: 0.95rem;
+font-weight: 700;
+color: #ffffff;
+margin: 0 0 0.4rem 0;
+}
+
+.cardDesc {
+font-size: 0.75rem;
+color: #ccfbf1;
+opacity: 0.85;
+line-height: 1.4;
+margin: 0;
+}
+
+/* Fade-in transitions */ 
+.howItWorksSection {
+  animation: sectionReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.headerContainer {
+  animation: headerReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes headerReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.cardFeaturedInner {
+  animation: cardReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.975);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* Responsive Breakpoint for Tablet */
+@media (max-width: 900px) {
+
+  .howItWorksSection {
+    min-height: 850px;
+  }
+
+  .Title {
+    font-size: 2rem;
+  }
+
+  .workTitle {
+    font-size: 3.5rem;
+    line-height: 0.9;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    max-width: 300px;
+    margin-inline: auto;
+  }
+
+  .cardDesc {
+  font-size: 0.6rem;
+  color: #ffffff;
+  opacity: 0.85;
+  line-height: 1.4;
+  margin: 0;
+}
+
+  .headerContainer {
+    margin-top: 1rem;
+  }
+
+  .lampGlow {
+    top: 140px;
+    width: min(620px, 90vw);
+    height: 50px;
+  }
+
+  .spotlightBeam {
+    width: 850px;
+    height: 700px;
+    top: 155px;
+  }
+
+  .cardsFanContainer {
+    height: 450px;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .glassCard {
+    width: 170px;
+    height: 260px;
+  }
+
+  .card1 {
+    transform: translateX(-300px) translateY(-100px) rotate(10deg);
+  }
+
+  .card2 {
+    transform: translateX(-150px) translateY(25px) rotate(-10deg);
+  }
+
+  .card3 {
+    transform: translateX(-50px) translateY(70px) rotate(-3deg);
+  }
+
+  .card4 {
+    transform: translateX(50px) translateY(70px) rotate(4deg);
+  }
+
+  .card5 {
+    transform: translateX(150px) translateY(25px) rotate(10deg);
+  }
+
+  .card6 {
+    transform: translateX(270px) translateY(-90px) rotate(-10deg);
+  }
+
+  /* Hover effects fanned cards */
+.card1:hover { transform: translateX(-250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card2:hover { transform: translateX(-250px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
+.card3:hover { transform: translateX(-90px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card4:hover { transform: translateX(110px) translateY(70px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card5:hover { transform: translateX(250px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card6:hover { transform: translateX(250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
+
+}
+
+/* Responsive Breakpoint for Phone */
+@media (max-width: 672px) {
+
+  .howItWorksSection {
+    padding: 1rem 1rem 4rem;
+  }
+
+  .headerContainer {
+    margin-top: 0;
+  }
+
+  .Title {
+    font-size: 2rem;
+  }
+
+  .workTitle {
+    font-size: 3.5rem;
+    line-height: 0.9;
+  }
+
+  .subtitle {
+    font-size: .8rem;
+    max-width: 300px;
+    margin-inline: auto;
+  }
+
+  .lampGlow {
+    top: 115px;
+    width: 280px;
+    height: 35px;
+  }
+
+  .spotlightBeam {
+    top: 130px;
+    width: 500px;
+    height: 500px;
+  }
+
+  .cardsFanContainer {
+    flex-direction: column;
+    height: auto;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .glassCard {
+    position: relative !important;
+    transform: none !important;
+    width: min(90vw, 300px);
+    height: auto;
+    min-height: 280px;
+  }
+
+  .glassCard:hover {
+    transform: translateY(-5px) !important;
+  }
+}

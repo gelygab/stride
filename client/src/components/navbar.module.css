@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter one', monospace;
+    font-family: 'inter one mono', monospace;
 }
 
 .burger {
@@ -38,7 +38,7 @@
 }
 
 img {
-    width: 15rem;
+    width: 250px;
     height: auto;
     /* aspect-ratio: 16/9; */
     margin: 0;
@@ -51,13 +51,11 @@ img {
     align-items: center;
     justify-content: space-between;
     list-style: none;
-    font-size: 1rem;
+    font-size: 1.4rem;
     border: 1px solid white;
-    width: auto;
-    max-width: 40rem;
-    padding: 0;
-    margin: 1rem;
-    height: 50px;
+    width: 650px;
+    height: 70px;
+    padding:0;
     border-radius: 3em;
     overflow: hidden;
     animation: fade-down 0.5s ease forwards;
@@ -92,12 +90,12 @@ img {
     white-space: nowrap;
 }
 
-.navlinks a:first-child {
+.navlinks li:first-child .navButton {
     border-top-left-radius: 3em;
     border-bottom-left-radius: 3em;
 }
 
-.navlinks a:hover {
+.navButton:hover {
     color: white;
     box-shadow: -3px 0 10px white, 3px 0 10px white;
 }
@@ -202,7 +200,7 @@ li.mobileDashboardItem,
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
+    gap: 12px;
     width: 100%;
     font-size: clamp(1rem, 10%, 2rem);
     padding: min(1.5rem, 9%);
@@ -278,6 +276,7 @@ li.mobileDashboardItem,
     .dashboard svg {
         display: none;
     }
+
 }
 
 /* Responsive Breakpoint for Phone */
