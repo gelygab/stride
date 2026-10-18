@@ -2,54 +2,94 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter one', monospace;
 }
 
 .burger {
     display: none;
 }
 
+.burgerNav{
+    display: flex;
+    align-items: center;
+}
+
+.burgerNavlinks{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .navbar {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
+    padding: 1.5rem 2.5rem; 
+    z-index: 100;
     margin: 0;
-    width: 100%;  
-    /* TODO: REMOVE THIS ONCE ACTUAL BG IS AVAILABLE */
-    background-color: black; 
+    /* position: absolute; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: auto; */
+    box-sizing: border-box;
+    background-color: transparent;
 }
 
 img {
-    width: 220px;
+    width: 15rem;
     height: auto;
-    margin: 20px;
+    /* aspect-ratio: 16/9; */
+    margin: 0;
+    animation: fade-down 0.5s ease forwards;
 }
 
 .navlinks {
     display: flex;
-    flex-direction: row;
+    flex: auto;
+    align-items: center;
     justify-content: space-between;
-    gap: 30px;
     list-style: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border: 1px solid white;
-    width: 600px;
+    width: auto;
+    max-width: 40rem;
+    padding: 0;
+    margin: 1rem;
     height: 50px;
-    padding:0;
     border-radius: 3em;
     overflow: hidden;
+    animation: fade-down 0.5s ease forwards;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.45));
+}
+
+.navlinks li {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex: auto;
+    align-items: center;
+    border-radius: 3em;
 }
 
 .navlinks a {
+    position: relative;
     display: flex;
+    flex: auto;
     align-items: center;
+    justify-content: center;
     height: 100%;
-    padding: 0 24px;
+    width: auto;
+    line-height: normal;
+    padding: 0;
     text-decoration: none;
     color: gray;
     border-radius: 3em;
-    transition: all 0.2s ease;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .navlinks a:first-child {
@@ -67,101 +107,274 @@ img {
     box-shadow: -6px 0 40px white, 6px 0 10px white;
 }
 
-.navlinks a:active, .navlinks a.active,
+.navlinks a.active {
+    background-image: linear-gradient(135deg, #9BE8E6 0%, #117A73 2%);
+    color: #ffffff !important;
+    border-radius: 9999px;
+    z-index: 1;
+    box-shadow: 
+        inset 0 4px 6px rgba(225, 225, 225, 0.45),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.15);
+    filter: drop-shadow(-3px 0 10px rgba(255, 255, 255, 0.65));
+    transform: translateY(-1px);
+    transition: transform 0.2s ease, filter 0.2s ease;
+    
+}
+
+.navlinks a.active::after {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 20% 25%,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.2) 40%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    z-index: -1;
+}
+.navlinks a.active::before {
+    content:'';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(
+        circle, 
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0) 75%    
+    );
+    filter: blur(8px);
+    z-index: -2;
+    pointer-events: none;
+}
+
 .dashboard a:active, .dashboard a.active {
     background-image: linear-gradient(to right, #9BE8E6, #11A7A3); 
     color: #0b1315;
 }
-.dashboard {
+
+li.mobileDashboardItem, 
+.navlinks .mobileDashboardItem {
+    display: none;
+}
+
+.active {
+    background: linear-gradient (135deg, #4ef2d2, #21baa1);
+    color: #000000; /* Change this to the color you want the active link to be */
+    font-weight: bold; /* Optional: make it bold so it stands out */
+}
+
+.dashboard{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    flex: auto;
     justify-content: space-between;
     gap: 10px;
+    margin: 1rem;
     white-space: nowrap;
-    margin: 20px;
     list-style: none;
-    margin: 20px;
-    font-size: 1rem;
-    color: gray;
-    min-width: 250px;
+    background-color: #117A73;
+    color:  #4ba39e;
+    width: auto;
+    max-width: 250px;
     height: 50px;
     padding: 0;
-    border: 1px solid white;
+    border: 2px solid #4BA39E;
     border-radius: 3em;
     overflow: hidden;
-    transition: all -.2s ease;
+    transition: all 0.2s ease;
+    animation: fade-down 0.5s ease forwards;
 }
 
 .dashboard svg {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
 }
+
 .dashboard a {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
     width: 100%;
-    padding: 0 24px;
+    font-size: clamp(1rem, 10%, 2rem);
+    padding: min(1.5rem, 9%);
     text-decoration: none;
-    color: gray;
+    color: white;
     border-radius: 2em;
     transition: all 0.2s ease;
 }
 
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    position: absolute;
+    z-index: 100;
+} 
+
 /* Responsive Breakpoint for Tablet */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .navbar {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center; 
+    justify-content: space-between; 
     margin: auto;
     }
 
     img {
+        justify-content: flex-start;
         width: 200px;
+        max-width: auto;
+    }
+
+    .navlinks {
+        width: auto;
+        gap: 5px;
+    }
+
+    .navlinks li {
+        width: auto;
+    }
+
+    .navlinks a {
+        width: auto;
+        font-size: clamp(0.8rem, 75%, 1rem);
+        /* gap: 5px; */
     }
 
     .dashboard {
-        margin: 35px;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        width: auto;
+        max-width: 175px;
+    }
+
+    .dashboard a {
+        display: flex;
+        justify-content: center;
+        font-size: clamp(0.8rem, 75%, 1rem);
+        width: 100%;   
+    }
+
+    .dashboard svg {
+        display: none;
     }
 }
 
 /* Responsive Breakpoint for Phone */
-@media (max-width: 672px) {
+@media (max-width: 780px) {
     .navbar {
-        flex-direction: row;
-        width: 100%;
-        justify-content: left; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Automatically pushes logo left and burger right */
         align-items: center;
-        margin: auto;
-        gap: 400px;
+        width: 100%;
+        z-index: 9999;
+        padding: 1rem 1.25rem; /* ~16px to 20px edge spacing */
+        gap: 1rem; /* Acts as a safety buffer if screen is very narrow */
     }
 
     img {
-        width: 150px;
+        width: 200px;
+        height: auto;
         justify-content: flex-start;
-    }
 
-    .navlinks {
-        display: none;
-    }
-
-    .dashboard {
-        display: none;
     }
     
-    .burger {
-        background: none;
-        border: none;
-        color: whitesmoke;
-        font-size: 45px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        /* border: 1px solid white; */
+    .dashboard {
+        display: none; /* Hide standalone desktop button */
     }
+
+    .burger {
+        display: block;
+        background: none;
+        color: #ffffff;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 0.25rem 0.6rem;
+        border: 0;
+        z-index: 10001;
+    }
+
+    /* One unified floating card */
+    .navlinks {
+        position: absolute;
+        top: calc(50% + 10px);
+        right: 0.4rem;
+        width: 250px;
+        height: auto !important;
+        background: rgba(11, 23, 27, 0.7);
+        backdrop-filter: blur(1rem);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        z-index: 10000;
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+    }
+
+    /* Reveal menu when burger is hovered OR when moving mouse over .navlinks */
+    .burger:hover ~ .navlinks,
+    .navlinks:hover {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        animation: fade-in 1s ease-in;
+    }
+
+    .navlinks li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .navlinks a {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 0.6rem 0.8rem;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s, color 0.2s;
+    }
+
+    .navlinks a:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.08);
+        border-radius: 3rem;
+        opacity: 1;
+    }
+
+    /* Show the integrated dashboard button inside the card */
+    li.mobileDashboardItem,
+    .navlinks .mobileDashboardItem {
+        display: block;
+    }
+
 }
+    

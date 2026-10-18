@@ -1,26 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import assets from '../assets/assets'
 import styles from './navbar.module.css'
 
 const Navbar = () => {
+    const [activeButton, setActiveButton] = useState(null);
+    const [isHovered, setIsHovered] = useState(false);  
     return (
         <nav className={styles.navbar}>
             <img src={assets.logo} alt=''></img>
-            <button className={styles.burger}>☰</button>
+                <button className={styles.burger}>☰</button>
             <ul className={styles.navlinks}>
-                <a href=''><li>Home</li></a>
-                <a href=''><li>How it works</li></a>
-                <a href=''><li>Impact</li></a>
-                <a href=''><li>Team</li></a>
+                <li><a href='#home' 
+                className={activeButton === 'home' ? styles.active : ''} 
+                onClick={() => setActiveButton('home')}>
+                    Home
+                    </a></li>
+                <li><a href='#about' 
+                className={activeButton === 'about' ? styles.active : ''} 
+                onClick={() => setActiveButton('about')}>
+                    About
+                    </a></li>
+                <li><a href='#how-it-works' 
+                className={activeButton === 'how-it-works' ? styles.active : ''} 
+                onClick={() => setActiveButton('how-it-works')}>
+                    How it works
+                    </a></li>
+                <li><a href='#impact' 
+                className={activeButton === 'impact' ? styles.active : ''} 
+                onClick={() => setActiveButton('impact')}>
+                    Impact
+                    </a></li>
+                <li><a href='#team' 
+                className={activeButton === 'team' ? styles.active : ''} 
+                onClick={() => setActiveButton('team')}>
+                    Team
+                    </a></li>
+                <li className={styles.mobileDashboardItem}><a href='#dashboard' 
+                className={activeButton === 'view live dashboard' ? styles.active : ''} 
+                onClick={() => setActiveButton('view live dashboard')}>
+                    View Live Dashboard
+                    </a></li>
             </ul>
-            <div className={styles.dashboard}><a href=''>
+            <div className={styles.dashboard}><a href='#dashboard'>
                 <li>View Live Dashboard</li>
                 <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667"/>
                 </svg>
             </a></div>
         </nav>
-        
     )
 }
 

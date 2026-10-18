@@ -1,0 +1,7 @@
+.waveContainer {
+  width: 100%;
+  height: 100%;
+  background-color: transparent; /* Must be transparent to see layers */
+  pointer-events: none; /* Lets clicks pass through the waves */
+  z-index: 10; /* Ensures it sits on top of the teal background */
+}

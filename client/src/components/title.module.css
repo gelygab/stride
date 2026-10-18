@@ -2,40 +2,74 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'inter', sans-serif
+    font-family: 'Inter one', monospace;
 }
 
-.background {
-    background-color: black;
-    min-height: 100vh;
+.titlebackground {
+    background: linear-gradient(to bottom, black, #11A7A3);
+    min-height: 100vh;  
     width: 100%;
+    position: relative;
+    overflow: hidden; /* Ensures waves don't overflow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box; /* Crucial: stops padding from causing scrollbars */
+    padding-top: 141.25px;     /* Push text down manually (Navbar height + extra) */
 }
 
 h1, h2 {
     color: white;
     text-align: center;
+    justify-content: center;
+    width: auto;
     /* border: 1px solid white; */
-    font-size: 4rem;
+    font-size: clamp(1.8rem, calc(6vw + 1rem), 5rem);
+    position: relative;
+    z-index: 100; /* Ensures it sits on top of the waves */
 }
 
 h2 {
     background-image: linear-gradient(to bottom, white, #11A7A3); 
     color: transparent;
     background-clip: text;
+    position: relative;
+    z-index: 100; /* Ensures it sits on top of the waves */
 }
 
 h5 {
-    color: gray;
+    display: flex;
+    color: rgb(54, 53, 53);
     text-align: center;
     /* border: 1px solid white; */
-    padding-top: 35px;
-    font-size: 1.1rem;
-    width: 100%;
+    padding: 35px 35px 0 35px;
+    font-size: clamp(0.875rem, calc(1.75vw + 0.1rem), 1.25rem);
+    width: auto;
+    
     justify-content: center;
+    position: relative;
+    z-index: 100; /* Ensures it sits on top of the waves */
 }
 
 .titlecontent {
     /* border: 1px solid white; */
     padding-top: 80px;
     align-items: center;
+}
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.introTitle {
+    animation: fade-up 0.5s ease forwards;
+    padding-top: 20px;
+    position: relative;
+    z-index: 100; /* Ensures it sits on top of the waves */
 }

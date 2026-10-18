@@ -2,8 +2,9 @@ import React from 'react'
 import './App.css';
 // import axios from "axios";
 // import { useEffect } from 'react';
-import Navbar from './components/navbar';
+import Navbar from './components/navbar'
 import Title from './components/title'
+import Dummy from './components/dummy'
 
 
 const  App = () => {
@@ -15,7 +16,8 @@ const  App = () => {
   return (
     <div className='body'>
       <Navbar />
-      <Title />
+      <Title  />
+      <Dummy/>
     </div>
   );
 }
