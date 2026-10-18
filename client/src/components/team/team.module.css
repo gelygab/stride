@@ -22,6 +22,19 @@
   scroll-margin-top: 0;
 }
 
+html, body {
+  background: #000;
+}
+
+/* Blend-in effect */
+.teamPage {
+  --feather: 60px; /* smaller because this section has a fixed 100vh height */
+  margin-top: calc(var(--feather) * -1);
+  padding-top: calc(10px + var(--feather));
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+}
+
 /* Fade-in Transitions */
 .teamPage {
   animation: teamPageReveal linear both;

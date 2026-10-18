@@ -2,6 +2,19 @@ html {
     scroll-behavior: smooth;
 }
 
+html, body {
+  background: #000;
+}
+
+/* Blend-in effect */
+.aboutBackground {
+  --feather: 100px;
+  margin-top: calc(var(--feather) * -1);
+  padding-top: var(--feather);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+}
+
 .fadeElement {
     opacity: 0;
     transform: translateY(40px);
@@ -329,6 +342,9 @@ html {
   .aboutH1 { font-size: 1rem; }
   .aboutH2 { font-size: 1.1rem; }
   .aboutH5 { font-size: 0.6rem; }
+}
+.content {
+padding-bottom: 150px;
 }
 
 @media (max-width: 672px) {
