@@ -76,11 +76,12 @@ function connectToBroker() {
     mqttClient.on("message", (topic, message) => {
         try {
             const rawString = message.toString();
-            const parsedData = JSON.parse(rawString);
-            io.emit("telemetry_data", parsedData);
-            console.log(
-                "Received Message: " + message.toString() + "\nOn topic: " + topic
-            );
+            
+            // ONLY emit if the message belongs to the load voltage topic
+            if (topic.endsWith("load_voltage")) {
+                const voltageValue = parseFloat(rawString);
+                io.emit("telemetry_data", voltageValue);
+            }
         } catch (err) {
             console.error('Failed to parse incoming raw data: ', err);
         }
