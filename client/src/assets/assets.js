@@ -7,6 +7,8 @@ import lm7805 from './lm7805.png';
 import lcd from './lcd.png';
 import esp32 from './esp32.png';
 import bridgerec from './bridgerec.png';
+import bolt from './bolt.png'
+import walker from './walker.png'
 
 const assets = {
     logo,
@@ -18,6 +20,8 @@ const assets = {
     lcd,
     esp32,
     bridgerec,
+    bolt,
+    walker,
 }
 
 export default assets;

@@ -1,7 +1,112 @@
-/* * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter one', monospace;
-    
-} */
+.landingContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.boltButton {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  max-width: 90vw;
+  max-height: 80vh;
+  cursor: pointer;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.3s ease;
+  z-index: 1;
+}
+
+.boltButton:hover {
+  transform: scale(1.03);
+}
+
+.boltActive {
+  filter: drop-shadow(0 0 25px rgba(17, 167, 163, 0.8));
+}
+
+.runnerTrack {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 450px;
+  height: 450px;
+  margin-top: -225px;
+  pointer-events: none;
+  animation: flashSprint 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.leadRunner {
+  z-index: 30;
+  filter: 
+    drop-shadow(-15px 0 20px rgba(155, 232, 230, 0.95))
+    drop-shadow(-40px 0 35px rgba(17, 167, 163, 0.8));
+}
+
+.trailFirst {
+  z-index: 29;
+  animation-delay: -0.06s;
+  opacity: 0.65;
+  filter: blur(1.5px) drop-shadow(-30px 0 30px rgba(17, 167, 163, 0.9));
+}
+
+.trailSecond {
+  z-index: 28;
+  animation-delay: -0.13s;
+  opacity: 0.35;
+  filter: blur(3.5px) drop-shadow(-60px 0 45px rgba(0, 142, 139, 0.7));
+}
+
+.lightningWake {
+  position: absolute;
+  top: 50%;
+  right: 60%;
+  width: 280px;
+  height: 8px;
+  background: linear-gradient(90deg, transparent 0%, rgba(17, 167, 163, 0.6) 50%, rgba(155, 232, 230, 0.95) 100%);
+  filter: blur(2px) drop-shadow(0 0 8px #9be8e6);
+  border-radius: 999px;
+  transform-origin: right center;
+  animation: wakeFlicker 0.1s infinite alternate;
+}
+
+@keyframes wakeFlicker {
+  0% { transform: scaleY(0.7) skewX(-15deg); opacity: 0.7; }
+  100% { transform: scaleY(1.4) skewX(-25deg); opacity: 1; }
+}
+
+@keyframes flashSprint {
+  0% {
+    transform: translateX(-105%) skewX(-10deg) scale(0.9);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  30% {
+    transform: translateX(25vw) skewX(-14deg) scale(0.96);
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(calc(50vw - 225px)) skewX(-20deg) scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(80vw) skewX(-26deg) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110vw) skewX(-32deg) scale(0.95);
+    opacity: 0;
+  }
+}

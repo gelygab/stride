@@ -8,7 +8,6 @@ const Title = () => {
     return (
         <div className={styles.titlebackground}>
             <div className={styles.titlecontent}>
-                <div className={styles.introTitle}>
                 <h1>Every footstep is a</h1>
                 <h2>watt waiting to happen</h2>
                 <h5>
@@ -23,7 +22,6 @@ const Title = () => {
                 </h5>
                 </div>
                 <Wave/>
-            </div>
         </div>
     )
 }
