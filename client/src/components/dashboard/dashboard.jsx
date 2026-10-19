@@ -1,3 +1,4 @@
+import io from "socket.io-client";
 import React, { useEffect, useState } from 'react';
 import {
   Area,
@@ -15,6 +16,8 @@ import BorderGlow from './reactbitsdashboard/BorderGlow';
 import assets from '../../assets/assets';
 import styles from './dashboard.module.css';
 
+const socket = io.connect("http://localhost:3001");
+
 const formatTime = (timestamp) =>
   new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit',
@@ -24,32 +27,40 @@ const formatTime = (timestamp) =>
 
 const createInitialReadings = () => {
   const now = Date.now();
-
   return Array.from({ length: 12 }, (_, index) => ({
     time: now - (11 - index) * 5 * 60 * 1000,
-    voltage: [2.1, 2.4, 2.2, 1.8, 1.6, 2.0, 2.7, 3.2, 2.9, 3.5, 3.1, 3.2][index],
+    voltage: 0,
   }));
 };
 
 const Dashboard = ({ onBack }) => {
+
+  // Voltage State
   const [voltageReadings, setVoltageReadings] = useState(createInitialReadings);
   const instantaneousVoltage = voltageReadings[voltageReadings.length - 1].voltage;
 
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
+    socket.on("telemetry_data", (data) => {
       const now = Date.now();
       const oneHourAgo = now - 60 * 60 * 1000;
 
+      let incomingVoltage = 0;
+      if (typeof data === 'number') {
+        incomingVoltage = data;
+      } else if (typeof data === 'string') {
+        incomingVoltage = parseFloat(data) || 0;
+      } else if (data && typeof data === 'object') {
+        incomingVoltage = Number(data.voltage || data.loadVoltage || data.load_voltage || 0);
+      }
       setVoltageReadings((readings) => [
         ...readings.filter((reading) => reading.time >= oneHourAgo),
         {
           time: now,
-          voltage: Number((1.5 + Math.random() * 2.5).toFixed(1)),
+          voltage: incomingVoltage,
         },
       ]);
-    }, 2000);
-
-    return () => window.clearInterval(intervalId);
+    })
+    return () => socket.off("telemetry_data");
   }, []);
 
   return (
