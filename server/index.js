@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
-const mqtt = require('mqtt');
-const express = require('express');
-
 dotenv.config();
-
+import express from 'express';
 const app = express();
+import http from 'http';
+import { Server } from 'socket.io';
+import cors from 'cors';
+import mqtt from 'mqtt';
+
 const PORT = process.env.PORT;
 
 let mqttClient;
@@ -14,6 +16,25 @@ const protocol = process.env.MQTTPROTOCOL || 'mqtt';
 const port = process.env.MQTTPORT || '1883';
 
 const SENSOR_TOPIC = process.env.SENSOR_TOPIC;
+
+app.use(cors());
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: [
+            "GET",
+            "POST"
+        ]
+    },
+});
+
+io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+})
+
 
 function connectToBroker() {
     const clientId = "client" + Math.random().toString(36).substring(7);
@@ -53,15 +74,22 @@ function connectToBroker() {
     });
 
     mqttClient.on("message", (topic, message) => {
-        console.log(
-            "Received Message: " + message.toString() + "\nOn topic: " + topic
-        );
+        try {
+            const rawString = message.toString();
+            const parsedData = JSON.parse(rawString);
+            io.emit("telemetry_data", parsedData);
+            console.log(
+                "Received Message: " + message.toString() + "\nOn topic: " + topic
+            );
+        } catch (err) {
+            console.error('Failed to parse incoming raw data: ', err);
+        }
     });
 }
 
 connectToBroker();
 
-app.listen(3001, () => {
+server.listen(3001, () => {
     console.log(`Server running on port ${PORT}.`);
 });
 
