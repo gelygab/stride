@@ -27,10 +27,9 @@ const formatTime = (timestamp) =>
 
 const createInitialReadings = () => {
   const now = Date.now();
-
   return Array.from({ length: 12 }, (_, index) => ({
     time: now - (11 - index) * 5 * 60 * 1000,
-    voltage: [2.1, 2.4, 2.2, 1.8, 1.6, 2.0, 2.7, 3.2, 2.9, 3.5, 3.1, 3.2][index],
+    voltage: 0,
   }));
 };
 
@@ -45,11 +44,19 @@ const Dashboard = ({ onBack }) => {
       const now = Date.now();
       const oneHourAgo = now - 60 * 60 * 1000;
 
+      let incomingVoltage = 0;
+      if (typeof data === 'number') {
+        incomingVoltage = data;
+      } else if (typeof data === 'string') {
+        incomingVoltage = parseFloat(data) || 0;
+      } else if (data && typeof data === 'object') {
+        incomingVoltage = Number(data.voltage || data.loadVoltage || data.load_voltage || 0);
+      }
       setVoltageReadings((readings) => [
         ...readings.filter((reading) => reading.time >= oneHourAgo),
         {
           time: now,
-          voltage: data.voltage,
+          voltage: incomingVoltage,
         },
       ]);
     })
