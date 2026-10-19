@@ -169,7 +169,7 @@ const Dashboard = ({ onBack }) => {
                   </YAxis>
                   <Tooltip
                     labelFormatter={formatTime}
-                    formatter={(value) => [`${Number(value).toFixed(1)} V`, 'Voltage']}
+                    formatter={(value) => [`${Number(value).toFixed(2)} V`, 'Voltage']}
                     contentStyle={{
                       border: '1px solid rgba(0, 205, 201, 0.6)',
                       borderRadius: 8,
@@ -194,7 +194,7 @@ const Dashboard = ({ onBack }) => {
             </div>
             <div className={styles.instantaneousReading} aria-live="polite">
               <p className={styles.instantaneousLabel}>Instantaneous Voltage</p>
-              <p className={styles.instantaneousValue}>{instantaneousVoltage.toFixed(1)} V</p>
+              <p className={styles.instantaneousValue}>{instantaneousVoltage.toFixed(2)} V</p>
             </div>
           </div>
           <div className={`${styles.panelBox} ${styles.energyPanel}`} aria-label="Stored energy panel">
