@@ -20,6 +20,19 @@
     opacity: 0;
 }
 
+html, body {
+  background: #000;
+}
+
+/* Blend-in effect */
+.impactSection {
+  --feather: 90px;
+  margin-top: calc(var(--feather) * -1);
+  padding-top: var(--feather);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+}
+
 /* Fade-in Transitions */
 .impactSection {
     animation: impactSectionReveal linear both;

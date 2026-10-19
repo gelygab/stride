@@ -163,6 +163,202 @@ html {
         inset 0 -99px 5px 0px black;
 }
 
+/* Fade-in Transiton */
+html {
+  scroll-behavior: smooth;
+}
+
+.aboutBackground {
+  background-color: #000000;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-image: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+  
+  animation: aboutSectionReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+}
+
+@keyframes aboutSectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.pillarWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  gap: 40px;
+  padding: 0 40px 60px;
+  box-sizing: border-box;
+}
+
+.aboutTitle {
+  justify-content: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: 900;
+  font-size: 3.7rem;
+  padding-bottom: 20px;
+  padding-top: 30px;
+  
+
+  animation: aboutHeaderReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes aboutHeaderReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.leftSide, .rightSide {
+  border: 3px solid white;
+  justify-content: center;
+  text-align: left;
+  width: 30%;
+  margin: auto;
+  padding: 70px 65px;
+  border-radius: 3em;
+  background-color: black;
+  color: white;
+  box-shadow:
+    -3px 0 10px white, 3px 0 10px white,
+    inset 0px -10px 15px 0px white,
+    inset 0 -20px 25px 0px #11A7A3,
+    inset 0 -99px 5px 0px black;
+  transition: transform ease 300ms, box-shadow ease 300ms;
+
+
+  animation: aboutCardReveal linear both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 80%;
+}
+
+@keyframes aboutCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.975);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.leftSide:hover {
+  transform: translate(3px, -9px);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    -3px 0 10px white, 3px 0 10px white,
+    inset 0px -10px 15px 0px white,
+    inset 0 -20px 25px 0px #11A7A3,
+    inset 0 -99px 5px 0px black;
+}
+
+.rightSide {
+  text-align: right;
+  justify-content: end;
+}
+
+.rightSide:hover {
+  transform: translate(-3px, -9px);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    -3px 0 10px white, 3px 0 10px white,
+    inset 0px -10px 15px 0px white,
+    inset 0 -20px 25px 0px #11A7A3,
+    inset 0 -99px 5px 0px black;
+}
+
+.aboutH1 {
+  padding-top: 15px;
+  padding-bottom: 9px;
+  font-size: 1rem;
+  font-weight: 450;
+}
+
+.aboutH2 {
+  padding-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.aboutH5 {
+  font-size: 0.6rem;
+  font-weight: 350;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .leftSide, .rightSide {
+    padding: 70px 55px;
+    width: 38%;
+  }
+  .aboutH1 { font-size: 1rem; }
+  .aboutH2 { font-size: 1.1rem; }
+  .aboutH5 { font-size: 0.6rem; }
+}
+.content {
+padding-bottom: 150px;
+}
+
+@media (max-width: 672px) {
+  .cardContainer {
+    flex-direction: column;
+  }
+  .leftSide, .rightSide {
+    padding: 70px 55px;
+    width: 65%;
+  }
+}
 
 /* Responsive Breakpoint for Tablet */
 @media (max-width: 900px) {
