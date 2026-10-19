@@ -2,6 +2,19 @@ html {
     scroll-behavior: smooth;
 }
 
+html, body {
+  background: #000;
+}
+
+
+/* Blend-in effect */
+.aboutBackground {
+  --feather: 100px;
+  margin-top: calc(var(--feather) * -1);
+  padding-top: var(--feather);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+}
 
 .fadeElement {
     opacity: 0;
@@ -10,12 +23,10 @@ html {
     will-change: opacity, transform;
 }
 
-
 .fadeElement.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 .aboutBackground {
     background-color: #000000;
@@ -28,7 +39,6 @@ html {
     background-image: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
 }
 
-
 .pillarWrapper {
     position: absolute;
     top: 0;
@@ -38,7 +48,6 @@ html {
     z-index: 1;
     pointer-events: none;
 }
-
 
 .content {
     position: relative;
@@ -54,7 +63,6 @@ html {
     /* border: 1px solid white; */
 }
 
-
 .aboutTitle {
     justify-content: center;
     color: white;
@@ -67,7 +75,6 @@ html {
     padding-top: 30px;
 }
 
-
 .cardContainer {
     display: flex;
     flex-direction: row;
@@ -77,37 +84,33 @@ html {
     width: 100%;
 }
 
-
 .leftSide {
     border: 3px solid white;
     justify-content: center;
     text-align: left;
     width: 30%;
     margin: auto;
-    padding: 70px 65px;
+    padding: 70px 65px; 
     border-radius: 3em;
     background-color: black;
     color:white;
-    box-shadow:
+    box-shadow: 
         -3px 0 10px white, 3px 0 10px white,
-        inset 0px -10px 15px 0px white,
+        inset 0px -10px 15px 0px white, 
         inset 0 -20px 25px 0px #11A7A3,
         inset 0 -99px 5px 0px black;
     transition: transform ease 300ms, box-shadow ease 300ms;
 }
 
-
 .leftSide:hover {
     transform: translate(3px, -9px);
-    box-shadow:
+    box-shadow: 
     0 10px 20px rgba(0, 0, 0, 0.2),
     -3px 0 10px white, 3px 0 10px white,
-        inset 0px -10px 15px 0px white,
+        inset 0px -10px 15px 0px white, 
         inset 0 -20px 25px 0px #11A7A3,
         inset 0 -99px 5px 0px black;
 }
-
-
 
 
 .aboutH1 {
@@ -117,9 +120,7 @@ html {
     font-size: 1.2rem;
     font-weight: 450;
 
-
 }
-
 
 .aboutH2 {
     justify-content: justify;
@@ -127,12 +128,10 @@ html {
     font-size: 1.5rem;
 }
 
-
 .aboutH5 {
     font-size: 0.7rem;
     font-weight: 350;
 }
-
 
 .rightSide {
     text-align: right;
@@ -144,29 +143,25 @@ html {
     border-radius: 3em;
     background-color: black;
     color:white;
-    box-shadow:
+    box-shadow: 
         -3px 0 10px white, 3px 0 10px white,
-        inset 0px -10px 15px 0px white,
+        inset 0px -10px 15px 0px white, 
         inset 0 -20px 25px 0px #11A7A3,
         inset 0 -99px 5px 0px black;
     transition: transform ease 300ms, box-shadow ease 300ms;
 }
 
-
 .rightSide:hover {
     transform: translate(-3px, -9px);
-    box-shadow:
+    box-shadow: 
     0 10px 20px rgba(0, 0, 0, 0.2),
     -3px 0 10px white, 3px 0 10px white,
-        inset 0px -10px 15px 0px white,
+        inset 0px -10px 15px 0px white, 
         inset 0 -20px 25px 0px #11A7A3,
         inset 0 -99px 5px 0px black;
 }
 
 /* Fade-in Transiton */
-html {
-  scroll-behavior: smooth;
-}
 
 .aboutBackground {
   background-color: #000000;
@@ -249,20 +244,12 @@ html {
   }
 }
 
-.cardContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-}
-
 .leftSide, .rightSide {
   border: 3px solid white;
   justify-content: center;
   text-align: left;
   width: 30%;
+  min-height: 490px;
   margin: auto;
   padding: 70px 65px;
   border-radius: 3em;
@@ -279,19 +266,6 @@ html {
   animation: aboutCardReveal linear both;
   animation-timeline: view();
   animation-range: entry 10% entry 80%;
-}
-
-@keyframes aboutCardReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.975);
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
 }
 
 .leftSide:hover {
@@ -322,17 +296,17 @@ html {
 .aboutH1 {
   padding-top: 15px;
   padding-bottom: 9px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 450;
 }
 
 .aboutH2 {
   padding-bottom: 25px;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 .aboutH5 {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   font-weight: 350;
 }
 
@@ -345,9 +319,6 @@ html {
   .aboutH1 { font-size: 1rem; }
   .aboutH2 { font-size: 1.1rem; }
   .aboutH5 { font-size: 0.6rem; }
-}
-.content {
-padding-bottom: 150px;
 }
 
 @media (max-width: 672px) {
@@ -362,19 +333,18 @@ padding-bottom: 150px;
 
 /* Responsive Breakpoint for Tablet */
 @media (max-width: 900px) {
-   
+    
     .leftSide, .rightSide {
         padding: 70px 55px;
-        width: 38%;
+        width: 38%; 
     }
     .aboutH1 {
         font-size: 1rem;
     }
-   
+    
     .aboutH2 {
         font-size: 1.1rem;
     }
-
 
     .aboutH5 {
         font-size: 0.6rem;
@@ -387,24 +357,21 @@ padding-bottom: 150px;
     .cardContainer {
         flex-direction: column;
     }
-   
+    
     .leftSide, .rightSide {
-        padding: 70px 55px;
+        padding: 70px 55px; 
         width: 65%;
     }
-
 
     .aboutH1 {
         font-size: 1rem;
     }
-   
+    
     .aboutH2 {
         font-size: 1.1rem;
     }
-
 
     .aboutH5 {
         font-size: 0.6rem;
     }
 }
-
