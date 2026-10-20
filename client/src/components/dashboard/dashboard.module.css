@@ -13,6 +13,7 @@
   color: #efffff;
 }
 
+
 .auroraBackground {
   position: absolute;
   z-index: -1;
@@ -20,6 +21,7 @@
   overflow: hidden;
   pointer-events: none;
 }
+
 
 .auroraBackground::before {
   position: absolute;
@@ -30,12 +32,14 @@
   content: '';
 }
 
+
 .auroraBackground > :global(.aurora-container) {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
+
 
 .dashboardHeader {
   display: grid;
@@ -46,6 +50,7 @@
   min-height: 96px;
 }
 
+
 .logo {
   display: block;
   width: clamp(160px, 18vw, 250px);
@@ -53,6 +58,7 @@
   height: auto;
   object-fit: contain;
 }
+
 
 .heading {
   min-width: 0;
@@ -62,15 +68,18 @@
   --dashboard-title-font-size: clamp(18px, 3.4vw, 64px);
 }
 
+
 .splitFlap {
   justify-content: center;
   max-width: 100%;
   --split-flap-font-size: var(--dashboard-title-font-size);
 }
 
+
 .heading :global(.split-flap-text) {
   font-family: 'inter one mono', monospace;
 }
+
 
 .backButton {
   position: relative;
@@ -90,15 +99,18 @@
   transition: background-color 180ms ease, box-shadow 180ms ease;
 }
 
+
 .backButton:hover {
   background: rgba(0, 81, 79, 0.78);
   box-shadow: 0 0 22px rgba(64, 255, 252, 0.2);
 }
 
+
 .backButton:focus-visible {
   outline: 2px solid #40fffc;
   outline-offset: 3px;
 }
+
 
 .panelFrame {
   position: relative;
@@ -115,12 +127,14 @@
     inset 0 1px 5px rgba(170, 255, 247, 0.12);
 }
 
+
 .panelFrame > :global(.border-glow-inner) {
   width: 100%;
   min-width: 0;
   flex: 1;
   overflow: visible;
 }
+
 
 .panelGrid {
   position: relative;
@@ -129,10 +143,11 @@
   flex: 1;
   width: 100%;
   min-height: 0;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.05fr) minmax(0, 0.82fr);
+  grid-template-columns: minmax(0, 1.10fr) minmax(0, 1.10fr) minmax(0, 0.82fr);
   grid-template-rows: minmax(250px, 1.15fr) minmax(130px, 0.72fr);
   gap: clamp(12px, 1.6vw, 22px);
 }
+
 
 .panelBox {
   display: flex;
@@ -149,6 +164,7 @@
     0 0 16px rgba(0, 205, 201, 0.035);
 }
 
+
 .panelHeading {
   margin: 0;
   color: #e8f4f4;
@@ -160,10 +176,12 @@
   text-transform: uppercase;
 }
 
+
 .powerPanel {
   grid-column: 1;
   grid-row: 1 / 3;
 }
+
 
 .powerPanelHeader {
   display: flex;
@@ -172,10 +190,12 @@
   margin-bottom: clamp(10px, 1.4vw, 18px);
 }
 
+
 .todayLabel {
   color: #c6d5d5;
   font-size: 0.82rem;
 }
+
 
 .liveBadge {
   display: inline-flex;
@@ -190,6 +210,7 @@
   font-size: 0.75rem;
 }
 
+
 .liveDot {
   width: 8px;
   height: 8px;
@@ -200,6 +221,7 @@
   animation: livePulse 1.35s ease-in-out infinite;
 }
 
+
 @keyframes livePulse {
   50% {
     opacity: 0.38;
@@ -207,9 +229,11 @@
   }
 }
 
+
 .powerPanel .panelHeading {
   margin-top: 0;
 }
+
 
 .panelSubheading {
   margin: 3px 0 0;
@@ -220,6 +244,7 @@
   text-transform: uppercase;
 }
 
+
 .powerChart {
   width: 100%;
   height: clamp(145px, 25vh, 230px);
@@ -227,11 +252,13 @@
   margin-top: 8px;
 }
 
+
 .instantaneousReading {
   margin-top: clamp(40px, 1.5vh, 16px);
   padding-top: 8px;
   text-align: center;
 }
+
 
 .instantaneousLabel {
   margin: 0;
@@ -240,6 +267,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+
 
 .instantaneousValue {
   margin: 2px 0 0;
@@ -251,6 +279,7 @@
   text-shadow: 0 0 16px rgba(64, 255, 252, 0.18);
 }
 
+
 .energyPanel {
   grid-column: 2;
   grid-row: 1;
@@ -258,6 +287,7 @@
   justify-content: flex-start;
   padding-top: clamp(20px, 3vw, 38px);
 }
+
 
 .capacitorMetrics {
   display: grid;
@@ -268,11 +298,13 @@
   margin: clamp(12px, 2vw, 24px) auto 0;
 }
 
+
 .capacitorEnergy,
 .capacitorCurrent {
   min-width: 0;
   text-align: center;
 }
+
 
 .capacitorValue {
   display: flex;
@@ -288,10 +320,12 @@
   white-space: nowrap;
 }
 
+
 .capacitorUnit {
   font-size: 0.52em;
   font-weight: 600;
 }
+
 
 .capacitorMetricLabel {
   margin: 5px 0 0;
@@ -300,6 +334,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
 
 .capacitorCurrentValue {
   margin: clamp(8px, 1.4vw, 16px) 0 0;
@@ -311,10 +346,12 @@
   white-space: nowrap;
 }
 
+
 .capacitorCurrentValue span {
   margin-left: 3px;
   font-size: 0.62em;
 }
+
 
 .capacitorMeter {
   width: 100%;
@@ -324,13 +361,13 @@
   background: rgba(16, 25, 24, 0.9);
 }
 
+
 .capacitorMeterSegments {
   display: grid;
   grid-template-columns: repeat(30, minmax(0, 1fr));
   gap: clamp(2px, 0.45vw, 5px);
   height: clamp(25px, 3.4vw, 38px);
 }
-
 .capacitorSegment {
   min-width: 0;
   background: rgba(0, 205, 201, 0.18);
@@ -354,10 +391,10 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: clamp(8px, 1.4vw, 18px);
+  gap: clamp(8px, 1vw, 18px);
   width: min(100%, 340px);
   margin: auto auto 0;
-  margin-top: clamp(18px, 1.5vh, 16px);
+  margin-top: clamp(5px, 1.5vh, 2px);
 }
 
 .chargingStatusLabel {
@@ -370,7 +407,7 @@
 .chargingStatus {
   display: flex;
   min-width: 0;
-  min-height: 38px;
+  min-height: 20px;
   align-items: center;
   justify-content: center;
   padding: 5px clamp(6px, 1vw, 12px);
@@ -382,29 +419,34 @@
   white-space: nowrap;
 }
 
+
 .charging {
   background: linear-gradient(110deg, rgba(0, 142, 139, 0.9), rgba(0, 81, 79, 0.9));
   color: #f2ffff;
   box-shadow: inset 0 0 10px rgba(64, 255, 252, 0.14);
 }
 
+
 .notCharging {
   background: rgba(24, 39, 39, 0.9);
   color: #b9c7c7;
 }
+
 
 .discharging {
   background: rgba(24, 39, 39, 0.9);
   color: #b9c7c7;
 }
 
+
 .stepsPanel {
-  grid-column: 3; 
+  grid-column: 3;
   grid-row: 1;
   align-items: center;
   justify-content: flex-start;
   padding-top: clamp(20px, 3vw, 38px);
 }
+
 
 .totalPanel {
   grid-column: 2 / 4;
@@ -413,6 +455,7 @@
   justify-content: flex-start;
   padding-top: clamp(14px, 2vh, 22px);
 }
+
 
 .totalMetrics {
   display: grid;
@@ -423,15 +466,18 @@
   margin-top: 8px;
 }
 
+
 .totalMetric {
   min-width: 0;
   padding: 0 clamp(8px, 2vw, 28px);
   text-align: center;
 }
 
+
 .totalMetric + .totalMetric {
   border-left: 1px   solid rgba(210, 221, 221, 0.55);
 }
+
 
 .totalMetricLabel {
   margin: 0;
@@ -442,6 +488,7 @@
   line-height: 1.3;
   text-transform: uppercase;
 }
+
 
 .totalMetricValue {
   display: flex;
@@ -457,14 +504,17 @@
   white-space: nowrap;
 }
 
+
 .totalMetricUnit {
   font-size: 0.58em;
 }
+
 
 @media (max-width: 480px) {
   .dashboardPage {
     padding: 14px;
   }
+
 
   .dashboardHeader {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -473,15 +523,18 @@
     min-height: 0;
   }
 
+
   .logo {
     width: clamp(105px, 30vw, 145px);
   }
+
 
   .heading {
     grid-column: 1 / -1;
     grid-row: 2;
     --dashboard-title-font-size: clamp(18px, 4.2vw, 32px);
   }
+
 
   .backButton {
     grid-column: 2;
@@ -493,11 +546,13 @@
    transform: translateY(-4px);
   }
 
+
   .panelFrame {
     margin-top: 18px;
     padding: 14px;
     min-height: 1080px;
   }
+
 
   .panelGrid {
     grid-template-columns: minmax(0, 1fr);
@@ -505,19 +560,23 @@
     gap: 12px;
   }
 
+
   .powerPanel,
   .energyPanel,
 
-  
+
+ 
   .stepsPanel,
   .totalPanel {
     grid-column: 1;
   }
 
+
   .powerPanel { grid-row: 1; }
   .energyPanel { grid-row: 2; }
   .stepsPanel { grid-row: 3; }
   .totalPanel { grid-row: 4; }
+
 
   .powerPanel,
   .energyPanel,
@@ -526,17 +585,21 @@
     padding: 18px;
   }
 
+
   .panelHeading {
     font-size: 0.9rem;
   }
+
 
   .liveBadge {
     min-height: 26px;
   }
 
+
   .energyPanel {
     padding-top: 18px;
   }
+
 
   .chargingStatusRow {
     grid-template-columns: auto minmax(0, 1fr);
@@ -544,51 +607,62 @@
     width: 100%;
   }
 
+
   .chargingStatus {
     min-height: 36px;
     font-size: 0.75rem;
   }
 
+
   .totalPanel {
     min-height: 240px;
   }
+
 
   .totalMetrics {
     grid-template-columns: minmax(0, 1fr);
     margin-top: 4px;
   }
 
+
   .totalMetric {
     padding: 10px 0;
   }
+
 
   .totalMetric + .totalMetric {
     border-top: 1px solid rgba(210, 221, 221, 0.35);
     border-left: 0;
   }
 
+
   .totalMetricLabel {
     font-size: 0.72rem;
   }
+
 
   .totalMetricValue {
     font-size: 1.8rem;
   }
 
-  .powerChart { 
+
+  .powerChart {
     height: clamp(150px, 22vh, 190px);
   }
+
 
   .instantaneousValue {
     font-size: 2rem;
   }
 }
 
+
 @media (min-width: 481px) and (max-width: 900px) {
   .dashboardHeader {
     grid-template-columns: minmax(0, 1fr) auto;
     min-height: 0;
   }
+
 
   .heading {
     grid-column: 1 / -1;
@@ -597,21 +671,25 @@
   }
 }
 
+
 @media (min-width: 481px) and (max-width: 900px) {
   .panelFrame {
     padding: 18px;
     min-height: 600px;
   }
 
+
   .panelGrid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: minmax(320px, 1fr) minmax(150px, 0.7fr);
   }
 
+
   .powerPanel {
     grid-column: 1;
     grid-row: 1 / 3;
   }
+
 
   .energyPanel {
     grid-column: 2;
@@ -619,10 +697,12 @@
     padding: 18px 14px;
   }
 
+
   .stepsPanel {
     grid-column: 2;
     grid-row: 2;
   }
+
 
   .totalPanel {
     grid-column: 1 / 3;
@@ -630,45 +710,55 @@
     min-height: 190px;
   }
 
+
   .totalMetric {
     padding: 0 8px;
   }
+
 
   .totalMetricLabel {
     font-size: 0.68rem;
   }
 
+
   .totalMetricValue {
     font-size: clamp(1.5rem, 3.8vw, 2rem);
   }
+
 
   .capacitorMetrics {
     gap: 4px;
     margin-top: 14px;
   }
 
+
   .capacitorValue {
     font-size: clamp(1.8rem, 4.8vw, 2.5rem);
   }
 
+
   .capacitorCurrentValue {
     font-size: clamp(1.05rem, 2.7vw, 1.4rem);
   }
+
 
   .capacitorMetricLabel,
   .capacitorMeterLabels {
     font-size: 0.65rem;
   }
 
+
   .capacitorMeter {
     margin-top: 14px;
     padding: 5px;
   }
 
+
   .capacitorMeterSegments {
     gap: 2px;
     height: 26px;
   }
+
 
   .chargingStatusRow {
     grid-template-columns: auto minmax(0, 1fr);
@@ -677,9 +767,11 @@
     padding-top: 10px;
   }
 
+
   .chargingStatusLabel {
     font-size: 0.7rem;
   }
+
 
   .chargingStatus {
     min-height: 34px;
@@ -687,6 +779,7 @@
     font-size: 0.72rem;
   }
 }
+
 
 @media (min-width: 901px) {
   .dashboardPage {
@@ -696,46 +789,61 @@
     overflow-y: hidden;
   }
 
+
   .dashboardHeader {
     min-height: clamp(64px, 10vh, 88px);
   }
+
 
   .panelFrame {
     margin-top: clamp(8px, 1.5vh, 14px);
     padding: clamp(12px, 2vh, 22px);
   }
 
+
   .panelGrid {
     grid-template-rows: minmax(0, 1.15fr) minmax(0, 0.72fr);
   }
+
 
   .panelBox {
     padding: clamp(12px, 1.5vw, 22px);
   }
 
+
   .energyPanel {
     padding-top: clamp(12px, 2vh, 20px);
   }
+
 
   .capacitorMetrics {
     margin-top: clamp(8px, 1.5vh, 16px);
   }
 
+
   .capacitorMeter {
     margin-top: clamp(10px, 1.5vh, 18px);
   }
+
 
   .capacitorMeterSegments {
     height: clamp(22px, 4vh, 34px);
   }
 
+
   .chargingStatusRow {
-    padding-top: clamp(8px, 1.5vh, 16px);
+    padding-top: clamp(8px, 1.5vh, 12px);
   }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .liveDot {
     animation: none;
   }
 }
+
+
+
+
+
