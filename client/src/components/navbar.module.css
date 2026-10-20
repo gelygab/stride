@@ -11,196 +11,371 @@
 
 .navbar {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between; 
+    padding: 1.5rem 2.5rem 0;
     margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;  
+    box-sizing: border-box;
+    border: 0;
     /* TODO: REMOVE THIS ONCE ACTUAL BG IS AVAILABLE */
-    background-color: black; 
+    background-color: transparent; 
 }
 
 img {
     width: 250px;
     height: auto;
-    margin: 20px;
+    margin: 0;
+    animation: fade-down 0.5s ease forwards;
 }
 
 .navlinks {
     display: flex;
-    flex-direction: row;
+    flex: auto;
+    align-items: center;
     justify-content: space-between;
-    gap: 30px;
     list-style: none;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     border: 1px solid white;
     width: 650px;
-    height: 70px;
+    height: 50px;
     padding:0;
     border-radius: 3em;
+    margin: 1rem;
     overflow: hidden;
+    animation: fade-down 0.5s ease forwards;
+    filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.45));
 }
 
 .navlinks li {
     display: flex;
+    flex: auto;
     align-items: center;
     height: 100%;
-}
-
-.navButton {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: gray;
-    font: inherit;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.navButton {
-    appearance: none;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 24px;
+    width: auto;
     border-radius: 3em;
-    border: none;
-    background: transparent;
-    font: inherit;
-    color: gray;
-    cursor: pointer;
+}
+
+.navlinks a {
+    position: relative;
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: auto;
+    line-height: normal;
+    font-size: clamp(1rem, 10%, 1.5rem);
+    padding: 0;
     text-decoration: none;
-}
-
-.navlinks li:first-child .navButton {
-    border-top-left-radius: 3em;
-    border-bottom-left-radius: 3em;
-}
-
-.navButton:hover {
-    color: white;
-    box-shadow: -3px 0 10px white, 3px 0 10px white;
-}
-
-.navButton:active, .navButton.active {
-    background-image: linear-gradient(to right, #9BE8E6, #11A7A3); 
-    color: #0b1315;
-}
-
-.dashboard {
-    display: flex;
-    align-items: center;
-    min-width: 250px;
-    height: 70px;
-    margin: 20px;
-    border: 1px solid white;
+    color: gray;
     border-radius: 3em;
+    font-weight: 500;
+    transition: all 0.3s ease;
     overflow: hidden;
     white-space: nowrap;
 }
 
-.dashboardButton {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    width: 100%;
-    height: 100%;
-    padding: 0 24px;
-    border: none;
-    border-radius: inherit;
-    background: transparent;
-    color: gray;
-    font: inherit;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+.navlinks li:first-child .navlinks a {
+    border-top-left-radius: 3em;
+    border-bottom-left-radius: 3em;
 }
 
-.dashboardButton:hover {
+.navlinks a:hover {
     color: white;
     box-shadow: -3px 0 10px white, 3px 0 10px white;
 }
 
-.dashboardButton svg {
-    width: 20px;
-    height: 20px;
-    flex: 0 0 auto;
-    fill: none;
+.dashboard a:hover {
+    color: white;
+    box-shadow: -6px 0 40px white, 6px 0 10px white;
 }
 
+.navlinks a.active {
+    background-image: linear-gradient(135deg, #9BE8E6 0%, #117A73 2%);
+    color: #ffffff !important;
+    border-radius: 9999px;
+    z-index: 1;
+    box-shadow: 
+        inset 0 4px 6px rgba(225, 225, 225, 0.45),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.15);
+    filter: drop-shadow(-3px 0 10px rgba(255, 255, 255, 0.65));
+    transform: translateY(-1px);
+    transition: transform 0.2s ease, filter 0.2s ease;
+    
+}
+
+.navlinks a.active::after {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 20% 25%,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.2) 40%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    z-index: -1;
+}
+.navlinks a.active::before {
+    content:'';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(
+        circle, 
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0) 75%    
+    );
+    filter: blur(8px);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.dashboard a:active, .dashboard a.active {
+    background-image: linear-gradient(to right, #9BE8E6, #11A7A3); 
+    color: #0b1315;
+}
+
+li.mobileDashboardItem, 
+.navlinks .mobileDashboardItem {
+    display: none;
+}
+
+.active {
+    background: linear-gradient (135deg, #4ef2d2, #21baa1);
+    color: #000000;
+    font-weight: bold;
+}
+
+.dashboard {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  list-style: none;
+  background-color: #117A73;
+  color: #4ba39e;
+  border: 2px solid #4BA39E;
+  border-radius: 9999px;
+  width: auto;
+  max-width: 100%;
+  height: 50px;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  gap: 0.5rem;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: fade-down 0.5s ease forwards;
+}
+
+.dashboard li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: clamp(0.75rem, 0.65rem + 0.6vw, 1rem);
+  line-height: 1;
+}
+
+.dashboard a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0; 
+  width: auto;
+  white-space: nowrap;
+}
+
+.dashboard svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+} 
+
 /* Responsive Breakpoint for Tablet */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .navbar {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center; 
+    justify-content: space-between; 
     margin: auto;
     }
 
     img {
-        width: 200px;
-    }
-
-    .dashboard {
-        margin: 18px;
-    }
-
-}
-
-/* Responsive Breakpoint for Phone */
-@media (max-width: 672px) {
-    .navbar {
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        margin: auto;
-        gap: 8px;
-        padding: 0 12px;
-    }
-
-    img {
-        width: 110px;
-        margin: 8px 0;
         justify-content: flex-start;
+        width: 200px;
+        max-width: auto;
     }
 
     .navlinks {
+        width: auto;
+        gap: 3px;
+    }
+
+    .navlinks li {
+        width: auto;
+    }
+
+    .navlinks a {
+        width: auto;
+        font-size: clamp(0.7rem, 1rem, 0.8rem);
+    }
+
+    .dashboard {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        width: auto;
+        max-width: none;
+        padding: 0.4rem 0.9rem;
+        white-space: nowrap;
+    }
+
+    .dashboard li {
+        font-size: clamp(0.7rem, 0.55rem + 0.4vw, 0.85rem); 
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .dashboard a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        white-space: nowrap;
+    }
+
+    .dashboard svg {
+        display: none;
+    }
+}
+
+/* Responsive Breakpoint for Phone */
+@media (max-width: 780px) {
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        z-index: 9999;
+        padding: 1rem 1.25rem;
+        gap: 1rem; 
+        position: relative;
+    }
+
+    img {
+        width: 200px;
+        height: auto;
+        justify-content: flex-start;
+    }
+    
+    .dashboard {
         display: none;
     }
 
     .burger {
+        display: block;
         background: none;
-        border: none;
-        color: whitesmoke;
-        flex: 0 0 auto;
-        font-size: 34px;
+        color: #ffffff;
+        font-size: 2rem;
         cursor: pointer;
+        padding: 0.25rem 0.6rem;
+        border: 0;
+        z-index: 10001;
+    }
+
+    
+    .navlinks {
+        position: absolute;
+        top: 5rem; 
+        right: 1.75rem;
+        width: 250px;
+        height: auto !important;
+        background: rgba(11, 23, 27, 0.7);
+        backdrop-filter: blur(1rem);
+        -webkit-backdrop-filter: blur(1rem);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 1rem;
+        padding: 1.25rem 0;
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 0.75rem;
+        z-index: 10000;
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        
+    }
+
+    .navlinks.navlinksOpen {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .navlinks li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .navlinks a {
+        display: flex;
+        width: 100%;
         align-items: center;
-        /* border: 1px solid white; */
+        padding: 0.6rem 0.8rem;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s, color 0.2s;
     }
 
-    .dashboard {
-        min-width: 0;
-        height: 42px;
-        margin: 0;
-        flex: 0 1 auto;
+    .navlinks a:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.08);
+        border-radius: 3rem;
+        opacity: 1;
     }
 
-    .dashboardButton {
-        justify-content: center;
-        gap: 6px;
-        padding: 0 10px;
-        font-size: clamp(0.6rem, 2.7vw, 0.78rem);
+    li.mobileDashboardItem,
+    .navlinks .mobileDashboardItem {
+        display: block;
     }
-
-    .dashboardButton svg {
-        width: 16px;
-        height: 16px;
-    }
-
 }
