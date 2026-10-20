@@ -5,12 +5,20 @@
     font-family: 'intel one mono', monospace
 }
 
-.background {
-    background-color: black;
-    min-height: 100vh;
+.titlebackground {
+    background: linear-gradient(to bottom, black, #11A7A3);
+    min-height: 100vh;  
     width: 100%;
+    position: relative;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 140px;
 }
 
+.titlecontent h1, .titlecontent h2 {
 /* Blend-in effect */
 .background {
   --feather: 100px;
@@ -22,28 +30,36 @@
 .titleH1, .titleH2 {
     color: white;
     text-align: center;
+    justify-content: center;
+    width: auto;
     /* border: 1px solid white; */
-    font-size: 4rem;
+    font-size: clamp(1.8rem, calc(6vw + 1rem), 5rem);
+    position: relative;
+    z-index: 10; /* Ensures it sits on top of the waves */
 }
 
-.titleH2 {
+.titlecontent h2 {
     background-image: linear-gradient(to bottom, white, #11A7A3); 
     color: transparent;
     background-clip: text;
+    position: relative;
+    z-index: 10; /* Ensures it sits on top of the waves */
 }
 
-.titleH5 {
-    color: gray;
+.titlecontent h5 {
+    color: rgb(71, 71, 71);
     text-align: center;
     /* border: 1px solid white; */
-    padding-top: 35px;
-    font-size: 1.1rem;
+    padding: 35px 35px 0 35px;
+    font-size: clamp(0.875rem, calc(1.75vw + 0.1rem), 1.25rem);
     width: 100%;
+    max-width: 1024px;
     justify-content: center;
+    position: relative;
+    z-index: 10; /* Ensures it sits on top of the waves */
 }
 
 .titlecontent {
-    /* border: 1px solid white; */
     padding-top: 80px;
     align-items: center;
 }
@@ -68,7 +84,7 @@
     }
 }
 
-.titleH1, .titleH2, .titleH5 {
+.titlecontent h1, .titlecontent h2, .titlecontent h5 {
     animation: headingReveal linear both;
     animation-timeline: view();
     animation-range: entry 10% entry 90%;
