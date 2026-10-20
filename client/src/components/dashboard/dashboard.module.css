@@ -406,6 +406,48 @@
   padding-top: clamp(20px, 3vw, 38px);
 }
 
+.footstepContent {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.footstepIcon {
+  display: block;
+  width: clamp(54px, 7vw, 92px);
+  max-width: 42%;
+  height: auto;
+  aspect-ratio: 1;
+  flex: 0 1 auto;
+  margin: 0;
+  filter: drop-shadow(0 0 12px rgba(0, 142, 139, 0.25));
+}
+
+.footstepCount {
+  margin: clamp(4px, 1vh, 10px) 0 0;
+  color: #72d9f2;
+  font-family: 'inter one mono', monospace;
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 0 16px rgba(64, 255, 252, 0.18);
+}
+
+.footstepCountLabel {
+  margin: 4px 0 0;
+  color: #a9c1c1;
+  font-size: clamp(0.62rem, 0.9vw, 0.78rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .totalPanel {
   grid-column: 2 / 4;
   grid-row: 2;
@@ -575,6 +617,19 @@
     font-size: 1.8rem;
   }
 
+  .stepsPanel {
+    min-height: 210px;
+    padding-top: 18px;
+  }
+
+  .footstepIcon {
+    width: 62px;
+  }
+
+  .footstepCount {
+    font-size: 1.8rem;
+  }
+
   .powerChart { 
     height: clamp(150px, 22vh, 190px);
   }
@@ -622,6 +677,15 @@
   .stepsPanel {
     grid-column: 2;
     grid-row: 2;
+    padding: 14px 10px;
+  }
+
+  .footstepIcon {
+    width: 54px;
+  }
+
+  .footstepCount {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
   }
 
   .totalPanel {
