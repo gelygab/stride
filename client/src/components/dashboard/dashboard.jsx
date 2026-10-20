@@ -15,6 +15,8 @@ import SplitFlapText from './reactbitsdashboard/SplitFlapText';
 import BorderGlow from './reactbitsdashboard/BorderGlow';
 import assets from '../../assets/assets';
 import styles from './dashboard.module.css';
+// import { create } from "node:vfs";
+
 
 
 const socket = io.connect("http://localhost:3001");
@@ -38,16 +40,16 @@ const createInitialReadings = () => {
 
 
 const createInitialCapacitorReading = () => ({
-  capacitorVoltageV: 5.1,
-  storedEnergyMj: 350,
-  currentMa: 4.8,
+  capacitorVoltageV: 0,
+  storedEnergyMj: 0,
+  currentMa: 0,
   chargerConnected: true,
 });
 
 
 const createInitialTotalOutput = () => ({
-  cumulativeEnergyWh: 0.12,
-  outputPowerW: 8.5,
+  cumulativeEnergyWh: 0,
+  outputPowerW: 0,
 });
 
 
@@ -62,13 +64,18 @@ const Dashboard = ({ onBack }) => {
   const hasBackendFootstepCount = useRef(false);
   const instantaneousVoltage = voltageReadings[voltageReadings.length - 1].voltage;
 
+
   useEffect(() => {
     const handleTelemetry = (data) => {
+      console.log("Raw socket telemetry data: ", data);
       const now = Date.now();
       const oneHourAgo = now - 60 * 60 * 1000;
 
-
       let incomingVoltage = 0;
+      let incomingCurrent = 0;
+      let incomingPower = 0;
+      let incomingEnergy = 0;
+
       if (typeof data === 'number') {
         incomingVoltage = data;
       } else if (typeof data === 'string') {
@@ -86,6 +93,10 @@ const Dashboard = ({ onBack }) => {
           hasBackendFootstepCount.current = true;
           setFootstepPulseCount(Math.floor(incomingFootstepCount));
         }
+        incomingVoltage = Number(data.voltage ?? data.loadVoltage ?? data.load_voltage ?? 0);
+        incomingCurrent = Number(data.current ?? data.current_mA ?? 0);
+        incomingPower = Number(data.power ?? data.power_W ?? 0);
+        incomingEnergy = Number(data.energy ?? data.energy_Wh ?? 0);
       }
 
       setVoltageReadings((readings) => [
@@ -96,22 +107,29 @@ const Dashboard = ({ onBack }) => {
         },
       ]);
 
-    };
+      setCapacitorReading((prev) => ({
+        ...prev,
+        capacitorVoltageV: incomingVoltage,
+        storedEnergyMj: (0.5 * 0.000010 * Math.pow(incomingVoltage, 2) * 1000000),
+        currentMa: incomingCurrent,
+        chargerConnected: Math.abs(incomingCurrent) <= 0.15 ? true : false, 
+      }));
 
-    socket.on("telemetry_data", handleTelemetry);
+      setTotalOutput((prev) => ({
+        ...prev,
+        cumulativeEnergyWh: incomingEnergy,
+        outputPowerW: incomingPower,
+      }));
+      
+      const intervalId = window.setInterval(() => {
+        if (!hasBackendFootstepCount.current) {
+          setFootstepPulseCount((count) => count + (Math.random() < 0.25 ? 0 : 1));
+        }
+      }, 1500);
+    }
+
     return () => socket.off("telemetry_data", handleTelemetry);
   }, []);
-
-  useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      if (!hasBackendFootstepCount.current) {
-        setFootstepPulseCount((count) => count + (Math.random() < 0.25 ? 0 : 1));
-      }
-    }, 1500);
-
-    return () => window.clearInterval(intervalId);
-  }, []);
-
 
   return (
     <main className={styles.dashboardPage}>
@@ -221,7 +239,7 @@ const Dashboard = ({ onBack }) => {
                   </YAxis>
                   <Tooltip
                     labelFormatter={formatTime}
-                    formatter={(value) => [`${Number(value).toFixed(1)} V`, 'Voltage']}
+                    formatter={(value) => [`${Number(value).toFixed(2)} V`, 'Voltage']}
                     contentStyle={{
                       border: '1px solid rgba(0, 205, 201, 0.6)',
                       borderRadius: 8,
@@ -246,7 +264,7 @@ const Dashboard = ({ onBack }) => {
             </div>
             <div className={styles.instantaneousReading} aria-live="polite">
               <p className={styles.instantaneousLabel}>Instantaneous Voltage</p>
-              <p className={styles.instantaneousValue}>{instantaneousVoltage.toFixed(1)} V</p>
+              <p className={styles.instantaneousValue}>{instantaneousVoltage.toFixed(2)} V</p>
             </div>
           </div>
           <div className={`${styles.panelBox} ${styles.energyPanel}`} aria-label="Capacitor storage panel">
@@ -254,15 +272,15 @@ const Dashboard = ({ onBack }) => {
             <div className={styles.capacitorMetrics}>
               <div className={styles.capacitorEnergy}>
                 <p className={styles.capacitorValue}>
-                  <span>{capacitorReading.storedEnergyMj}</span>
-                  <span className={styles.capacitorUnit}>mJ</span>
+                  <span>{capacitorReading.storedEnergyMj.toFixed(2)}</span>
+                  <span className={styles.capacitorUnit}>µJ</span>
                 </p>
                 <p className={styles.capacitorMetricLabel}>Stored Energy</p>
               </div>
               <div className={styles.capacitorCurrent}>
                 <p className={styles.capacitorMetricLabel}>Current</p>
                 <p className={styles.capacitorCurrentValue}>
-                  {capacitorReading.currentMa.toFixed(1)}
+                  {capacitorReading.currentMa.toFixed(2)}
                   <span>mA</span>
                 </p>
               </div>
@@ -274,7 +292,7 @@ const Dashboard = ({ onBack }) => {
               aria-valuemin={0}
               aria-valuemax={6}
               aria-valuenow={capacitorReading.capacitorVoltageV}
-              aria-valuetext={`${capacitorReading.capacitorVoltageV.toFixed(1)} volts`}
+              aria-valuetext={`${capacitorReading.capacitorVoltageV.toFixed(2)} volts`}
             >
               <div className={styles.capacitorMeterSegments} aria-hidden="true">
                 {Array.from({ length: 30 }, (_, index) => (
@@ -338,7 +356,7 @@ const Dashboard = ({ onBack }) => {
                 <div className={styles.totalMetric}>
                   <p className={styles.totalMetricLabel}>Cumulative Power (W)</p>
                   <p className={styles.totalMetricValue}>
-                    <span>{totalOutput.outputPowerW.toFixed(1)}</span>
+                    <span>{totalOutput.outputPowerW.toFixed(2)}</span>
                     <span className={styles.totalMetricUnit}>W</span>
                   </p>
                 </div>
