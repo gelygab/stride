@@ -7,22 +7,13 @@ html, body {
 }
 
 
-/* Blend-in effect */
-.aboutBackground {
-  --feather: 100px;
-  margin-top: calc(var(--feather) * -1);
-  padding-top: var(--feather);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
-}
-
 .fadeElement {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     will-change: opacity, transform;
 }
-
+ 
 .fadeElement.visible {
     opacity: 1;
     transform: translateY(0);
@@ -374,4 +365,13 @@ html, body {
     .aboutH5 {
         font-size: 0.6rem;
     }
+}
+
+/* Blend-in effect */
+.aboutBackground {
+  --feather: 100px;
+  margin-top: calc(var(--feather) * -1);
+  padding-top: var(--feather);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import assets from '../assets/assets'
 import styles from './navbar.module.css'
 
-const Navbar = () => {
+const Navbar = ({ onNavigate }) => {
     const [activeButton, setActiveButton] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -13,7 +13,19 @@ const Navbar = () => {
     const handleLinkClick = (name) => {
         setActiveButton(name);
         setIsMenuOpen(false);
+        if (onNavigate) {
+            onNavigate(name);
+        }
     };
+
+    const handleDashboardClick = (e) => {
+        e.preventDefault();
+        setIsMenuOpen(false);
+        setActiveButton('dashboard');
+        if(onNavigate) {
+            onNavigate('dashboard');
+        }
+    }
 
     return (
         <nav className={`${styles.navbar} ${styles.sticky}`}>
@@ -78,8 +90,8 @@ const Navbar = () => {
                 <li className={styles.mobileDashboardItem}>
                     <a 
                         href="#dashboard" 
-                        className={activeButton === 'view live dashboard' ? styles.active : ''} 
-                        onClick={() => handleLinkClick('view live dashboard')}
+                        className={activeButton === 'dashboard' ? styles.active : ''} 
+                        onClick={handleDashboardClick}
                     >
                         View Live Dashboard
                     </a>
@@ -87,7 +99,7 @@ const Navbar = () => {
             </ul>
 
             <div className={styles.dashboard}>
-                <a href="#dashboard">
+                <a href="#dashboard" onClick={handleDashboardClick}>
                     <li>View Live Dashboard</li>
                     <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667"/>
