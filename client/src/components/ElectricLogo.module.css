@@ -1,0 +1,9 @@
+:global(.electric-logo) {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

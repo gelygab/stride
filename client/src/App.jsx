@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Index from './components/index';
 import Navbar from './components/navbar';
 import Title from './components/title';
 import HowItWorks from './components/howitworks';
@@ -9,7 +10,7 @@ import Impact from './components/impact';
 import Dashboard from './components/dashboard/dashboard';
 
 const App = () => {
-  const [currentView, setCurrentView] = useState('home');
+  const [currentView, setCurrentView] = useState('index');
 
   const handleNavigate = (view) => {
     if (view === 'dashboard') {
@@ -31,8 +32,10 @@ const App = () => {
 
   return (
     <div className="App">
-      {currentView === 'dashboard' ? (
-        <Dashboard onBack={() => setCurrentView('home')} />
+      {currentView === 'index'? (
+        <Index onEnter={() => setCurrentView('home')} /> 
+      ) : currentView === 'dashboard' ? (
+        <Dashboard onBack={() => setCurrentView('home')} /> 
       ) : (
         <>
           <Navbar onNavigate={handleNavigate} />
