@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Area,
   AreaChart,
@@ -16,6 +16,7 @@ import BorderGlow from './reactbitsdashboard/BorderGlow';
 import assets from '../../assets/assets';
 import styles from './dashboard.module.css';
 // import { create } from "node:vfs";
+
 
 
 const socket = io.connect("http://localhost:3001");
@@ -59,15 +60,16 @@ const Dashboard = ({ onBack }) => {
   const [voltageReadings, setVoltageReadings] = useState(createInitialReadings);
   const [capacitorReading, setCapacitorReading] = useState(createInitialCapacitorReading);
   const [totalOutput, setTotalOutput] = useState(createInitialTotalOutput);
+  const [footstepPulseCount, setFootstepPulseCount] = useState(1250);
+  const hasBackendFootstepCount = useRef(false);
   const instantaneousVoltage = voltageReadings[voltageReadings.length - 1].voltage;
 
 
   useEffect(() => {
-    socket.on("telemetry_data", (data) => {
+    const handleTelemetry = (data) => {
       console.log("Raw socket telemetry data: ", data);
       const now = Date.now();
       const oneHourAgo = now - 60 * 60 * 1000;
-
 
       let incomingVoltage = 0;
       let incomingCurrent = 0;
@@ -79,6 +81,18 @@ const Dashboard = ({ onBack }) => {
       } else if (typeof data === 'string') {
         incomingVoltage = parseFloat(data) || 0;
       } else if (data && typeof data === 'object') {
+        incomingVoltage = Number(data.voltage || data.loadVoltage || data.load_voltage || 0);
+
+        const incomingFootstepCount = Number(data.footstepPulseCount);
+        if (
+          data.footstepPulseCount !== undefined &&
+          data.footstepPulseCount !== null &&
+          Number.isFinite(incomingFootstepCount) &&
+          incomingFootstepCount >= 0
+        ) {
+          hasBackendFootstepCount.current = true;
+          setFootstepPulseCount(Math.floor(incomingFootstepCount));
+        }
         incomingVoltage = Number(data.voltage ?? data.loadVoltage ?? data.load_voltage ?? 0);
         incomingCurrent = Number(data.current ?? data.current_mA ?? 0);
         incomingPower = Number(data.power ?? data.power_W ?? 0);
@@ -105,11 +119,17 @@ const Dashboard = ({ onBack }) => {
         ...prev,
         cumulativeEnergyWh: incomingEnergy,
         outputPowerW: incomingPower,
-      })); 
-    })
-    return () => socket.off("telemetry_data");
-  }, []);
+      }));
+      
+      const intervalId = window.setInterval(() => {
+        if (!hasBackendFootstepCount.current) {
+          setFootstepPulseCount((count) => count + (Math.random() < 0.25 ? 0 : 1));
+        }
+      }, 1500);
+    }
 
+    return () => socket.off("telemetry_data", handleTelemetry);
+  }, []);
 
   return (
     <main className={styles.dashboardPage}>
@@ -302,6 +322,26 @@ const Dashboard = ({ onBack }) => {
           </div>
           <div className={`${styles.panelBox} ${styles.stepsPanel}`} aria-label="Footstep pulses panel">
             <h2 className={styles.panelHeading}>Footstep Pulses</h2>
+            <div className={styles.footstepContent} aria-live="polite">
+              <svg
+                className={styles.footstepIcon}
+                viewBox="-41.24 -41.24 597.94 597.94"
+                role="img"
+                aria-label="Footstep"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M298.794 386.711c27.805 9.522 52.357 15.587 87.633 26.427C372.875 584.374 210.952 516.371 298.794 386.711zM443.366 229.409c-1.826-51.415-10.882-118.86-83.017-108.292-33.815 8.825-58.8 45.962-70.551 110.035-6.454 35.229-2.701 84.678 4.912 114.32 6.951 20.889 4.587 19.605 12.058 23.572 28.916 6.514 57.542 13.725 86.693 21.078C423.075 369.209 447.397 258.182 443.366 229.409zM220.752 225.463c7.607-29.646 11.36-79.095 4.909-114.32C213.919 47.067 188.931 9.924 155.11 1.105 82.975-9.463 73.919 57.981 72.093 109.399c-4.031 28.768 20.294 139.802 49.911 160.711 29.149-7.353 57.771-14.558 86.696-21.078 7.462-3.963 5.098-2.68 12.052-23.569zM129.029 293.132c13.547 171.234 175.47 103.231 87.63-26.427-27.805 9.523-52.355 15.587-87.63 26.427z"
+                  fill="#008E8B"
+                  stroke="#648290"
+                  strokeWidth="1.03"
+                />
+              </svg>
+              <p className={styles.footstepCount}>
+                {footstepPulseCount.toLocaleString()}
+              </p>
+              <p className={styles.footstepCountLabel}>Total Steps</p>
+            </div>
           </div>
             <div className={`${styles.panelBox} ${styles.totalPanel}`} aria-label="Total output panel">
               <h2 className={styles.panelHeading}>Total Output</h2>
@@ -330,11 +370,3 @@ const Dashboard = ({ onBack }) => {
 
 
 export default Dashboard;
-
-
-// svg
-// <svg fill="#008E8B" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256px" height="256px" viewBox="-41.24 -41.24 597.94 597.94" xml:space="preserve" stroke="#008E8B" stroke-width="0.005154580000000001" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.030916"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M298.794,386.711c27.805,9.522,52.357,15.587,87.633,26.427C372.875,584.374,210.952,516.371,298.794,386.711z M443.366,229.409c-1.826-51.415-10.882-118.86-83.017-108.292c-33.815,8.825-58.8,45.962-70.551,110.035 c-6.454,35.229-2.701,84.678,4.912,114.32c6.951,20.889,4.587,19.605,12.058,23.572c28.916,6.514,57.542,13.725,86.693,21.078 C423.075,369.209,447.397,258.182,443.366,229.409z M220.752,225.463c7.607-29.646,11.36-79.095,4.909-114.32 C213.919,47.067,188.931,9.924,155.11,1.105C82.975-9.463,73.919,57.981,72.093,109.399 c-4.031,28.768,20.294,139.802,49.911,160.711c29.149-7.353,57.771-14.558,86.696-21.078 C216.162,245.069,213.798,246.352,220.752,225.463z M129.029,293.132c13.547,171.234,175.47,103.231,87.63-26.427 C188.854,276.228,164.304,282.292,129.029,293.132z"></path> </g> </g></svg>
-// #648290
-
-
-
