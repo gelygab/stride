@@ -73,17 +73,37 @@ function connectToBroker() {
         });
     });
 
+    const latestTelemetry = {
+        voltage: 0,
+        current: 0,
+        power: 0,
+        energy: 0,
+    };
+
     mqttClient.on("message", (topic, message) => {
         try {
             const rawString = message.toString();
-            
-            // ONLY emit if the message belongs to the load voltage topic
-            if (topic.endsWith("load_voltage")) {
-                const voltageValue = parseFloat(rawString);
-                io.emit("telemetry_data", voltageValue);
+            let parsedVal = parseFloat(rawString);
+
+            if (topic.includes("load_voltage") || topic.includes("voltage")) {
+                if(!isNaN(parsedVal)) latestTelemetry.voltage = parsedVal;
+            } else if (topic.includes("current")) {
+                if (!isNaN(parsedVal)) latestTelemetry.current = parsedVal;
+            } else if (topic.includes("power")) {
+                if (!isNaN(parsedVal)) latestTelemetry.power = parsedVal;
+            } else if (topic.includes("energy")) {
+                if (!isNaN(parsedVal)) latestTelemetry.energy = parsedVal;
+            } else if (rawString.startsWith("{") && rawString.endsWith("}")) {
+               const JSONdata = JSON.parse(rawString);
+               latestTelemetry.voltage = Number(JSONdata.voltage || JSONdata.loadVoltage || JSONdata.load_voltage || 0);
+               latestTelemetry.current = Number(JSONdata.current || JSONdata.current_mA || 0);
+               latestTelemetry.power = Number(JSONdata.power || JSONdata.power_W || 0);
+               latestTelemetry.energy = Number(JSONdata.energy || JSONdata.energy_Wh || 0);
             }
+            
+            io.emit("telemetry_data", latestTelemetry);
         } catch (err) {
-            console.error('Failed to parse incoming raw data: ', err);
+            console.error('Failed to parse incoming telemetry JSON: ', err);
         }
     });
 }

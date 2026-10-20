@@ -64,6 +64,7 @@ const Dashboard = ({ onBack }) => {
 
   useEffect(() => {
     socket.on("telemetry_data", (data) => {
+      console.log("Raw socket telemetry data: ", data);
       const now = Date.now();
       const oneHourAgo = now - 60 * 60 * 1000;
 
@@ -78,10 +79,10 @@ const Dashboard = ({ onBack }) => {
       } else if (typeof data === 'string') {
         incomingVoltage = parseFloat(data) || 0;
       } else if (data && typeof data === 'object') {
-        incomingVoltage = Number(data.voltage || data.loadVoltage || data.load_voltage || 0);
-        incomingCurrent = Number(data.current || data.current_mA);
-        incomingPower = Number(data.power || data.power_W);
-        incomingEnergy = Number(data.energy || data.energy_Wh);
+        incomingVoltage = Number(data.voltage ?? data.loadVoltage ?? data.load_voltage ?? 0);
+        incomingCurrent = Number(data.current ?? data.current_mA ?? 0);
+        incomingPower = Number(data.power ?? data.power_W ?? 0);
+        incomingEnergy = Number(data.energy ?? data.energy_Wh ?? 0);
       }
 
       setVoltageReadings((readings) => [
@@ -95,9 +96,9 @@ const Dashboard = ({ onBack }) => {
       setCapacitorReading((prev) => ({
         ...prev,
         capacitorVoltageV: incomingVoltage,
-        storedEnergyMj: (0.5 * 0.000010 * Math.pow(incomingVoltage, 2) * 1000),
+        storedEnergyMj: (0.5 * 0.000010 * Math.pow(incomingVoltage, 2) * 1000000),
         currentMa: incomingCurrent,
-        chargerConnected: incomingCurrent === 0 ? true : false, 
+        chargerConnected: Math.abs(incomingCurrent) <= 0.15 ? true : false, 
       }));
 
       setTotalOutput((prev) => ({
@@ -252,7 +253,7 @@ const Dashboard = ({ onBack }) => {
               <div className={styles.capacitorEnergy}>
                 <p className={styles.capacitorValue}>
                   <span>{capacitorReading.storedEnergyMj.toFixed(2)}</span>
-                  <span className={styles.capacitorUnit}>mJ</span>
+                  <span className={styles.capacitorUnit}>µJ</span>
                 </p>
                 <p className={styles.capacitorMetricLabel}>Stored Energy</p>
               </div>
