@@ -1,3 +1,4 @@
+import io from "socket.io-client";
 import React, { useEffect, useState } from 'react';
 import {
   Area,
@@ -15,6 +16,8 @@ import BorderGlow from './reactbitsdashboard/BorderGlow';
 import assets from '../../assets/assets';
 import styles from './dashboard.module.css';
 
+const socket = io.connect("http://localhost:3001");
+
 const formatTime = (timestamp) =>
   new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit',
@@ -24,32 +27,97 @@ const formatTime = (timestamp) =>
 
 const createInitialReadings = () => {
   const now = Date.now();
-
   return Array.from({ length: 12 }, (_, index) => ({
     time: now - (11 - index) * 5 * 60 * 1000,
-    voltage: [2.1, 2.4, 2.2, 1.8, 1.6, 2.0, 2.7, 3.2, 2.9, 3.5, 3.1, 3.2][index],
+    voltage: 0,
   }));
 };
 
+const createInitialCapacitorReading = () => ({
+  capacitorVoltageV: 5.1,
+  storedEnergyMj: 350,
+  currentMa: 4.8,
+  chargerConnected: true,
+});
+
+const createInitialTotalOutput = () => ({
+  cumulativeEnergyWh: 0.12,
+  outputPowerW: 8.5,
+});
+
 const Dashboard = ({ onBack }) => {
+
+  // Voltage State
   const [voltageReadings, setVoltageReadings] = useState(createInitialReadings);
+  const [capacitorReading, setCapacitorReading] = useState(createInitialCapacitorReading);
+  const [totalOutput, setTotalOutput] = useState(createInitialTotalOutput);
   const instantaneousVoltage = voltageReadings[voltageReadings.length - 1].voltage;
 
   useEffect(() => {
+<<<<<<< HEAD
+    socket.on("telemetry_data", (data) => {
+=======
+    let mockTick = 0;
     const intervalId = window.setInterval(() => {
+>>>>>>> f44501c (feature: added capacitor storage and total output)
       const now = Date.now();
       const oneHourAgo = now - 60 * 60 * 1000;
+      mockTick += 1;
 
+      // Mock charger detection changes every 20 seconds until backend telemetry replaces it.
+      const chargerConnected = Math.floor(mockTick / 10) % 2 === 0;
+      const outputPowerW = Number((7.5 + Math.random() * 2).toFixed(1));
+
+      let incomingVoltage = 0;
+      if (typeof data === 'number') {
+        incomingVoltage = data;
+      } else if (typeof data === 'string') {
+        incomingVoltage = parseFloat(data) || 0;
+      } else if (data && typeof data === 'object') {
+        incomingVoltage = Number(data.voltage || data.loadVoltage || data.load_voltage || 0);
+      }
       setVoltageReadings((readings) => [
         ...readings.filter((reading) => reading.time >= oneHourAgo),
         {
           time: now,
-          voltage: Number((1.5 + Math.random() * 2.5).toFixed(1)),
+          voltage: incomingVoltage,
         },
       ]);
+<<<<<<< HEAD
+    })
+    return () => socket.off("telemetry_data");
+=======
+
+      setCapacitorReading((reading) => ({
+        capacitorVoltageV: Number(
+          Math.min(
+            6,
+            Math.max(
+              0,
+              reading.capacitorVoltageV +
+                (chargerConnected ? 0.04 : -0.04) +
+                (Math.random() - 0.5) * 0.08,
+            ),
+          ).toFixed(1),
+        ),
+        storedEnergyMj: Math.min(
+          500,
+          Math.max(0, Math.round(reading.storedEnergyMj + (chargerConnected ? 1 : -1))),
+        ),
+        currentMa: chargerConnected ? Number((4.3 + Math.random() * 0.9).toFixed(1)) : 0,
+        chargerConnected,
+      }));
+
+      setTotalOutput((output) => ({
+        cumulativeEnergyWh: Number(
+          (output.cumulativeEnergyWh + (outputPowerW * 2) / 3600).toFixed(5),
+        ),
+        outputPowerW,
+      }));
     }, 2000);
 
     return () => window.clearInterval(intervalId);
+>>>>>>> f44501c (feature: added capacitor storage and total output)
   }, []);
 
   return (
@@ -186,14 +254,80 @@ const Dashboard = ({ onBack }) => {
               <p className={styles.instantaneousValue}>{instantaneousVoltage.toFixed(1)} V</p>
             </div>
           </div>
-          <div className={`${styles.panelBox} ${styles.energyPanel}`} aria-label="Stored energy panel">
-            <h2 className={styles.panelHeading}>Stored Energy Status</h2>
+          <div className={`${styles.panelBox} ${styles.energyPanel}`} aria-label="Capacitor storage panel">
+            <h2 className={styles.panelHeading}>Capacitor Storage</h2>
+            <div className={styles.capacitorMetrics}>
+              <div className={styles.capacitorEnergy}>
+                <p className={styles.capacitorValue}>
+                  <span>{capacitorReading.storedEnergyMj}</span>
+                  <span className={styles.capacitorUnit}>mJ</span>
+                </p>
+                <p className={styles.capacitorMetricLabel}>Stored Energy</p>
+              </div>
+              <div className={styles.capacitorCurrent}>
+                <p className={styles.capacitorMetricLabel}>Current</p>
+                <p className={styles.capacitorCurrentValue}>
+                  {capacitorReading.currentMa.toFixed(1)}
+                  <span>mA</span>
+                </p>
+              </div>
+            </div>
+            <div
+              className={styles.capacitorMeter}
+              role="meter"
+              aria-label="Capacitor voltage"
+              aria-valuemin={0}
+              aria-valuemax={6}
+              aria-valuenow={capacitorReading.capacitorVoltageV}
+              aria-valuetext={`${capacitorReading.capacitorVoltageV.toFixed(1)} volts`}
+            >
+              <div className={styles.capacitorMeterSegments} aria-hidden="true">
+                {Array.from({ length: 30 }, (_, index) => (
+                  <span
+                    key={index}
+                    className={index < Math.round((capacitorReading.capacitorVoltageV / 6) * 30)
+                      ? `${styles.capacitorSegment} ${styles.capacitorSegmentFilled}`
+                      : styles.capacitorSegment}
+                  />
+                ))}
+              </div> 
+            </div> 
+            <div className={styles.capacitorMeterLabels} aria-hidden="true">
+              {Array.from({ length: 7 }, (_, volt) => <span key={volt}>{volt}V</span>)}
+            </div> 
+            <div className={styles.chargingStatusRow}>
+              <span className={styles.chargingStatusLabel}>Status:</span>
+              <span
+                className={`${styles.chargingStatus} ${
+                  capacitorReading.chargerConnected ? styles.charging : styles.discharging
+                }`}
+                aria-live="polite"
+              >
+                {capacitorReading.chargerConnected ? 'Charging' : 'Discharging'}
+              </span>
+            </div>
           </div>
           <div className={`${styles.panelBox} ${styles.stepsPanel}`} aria-label="Footstep pulses panel">
             <h2 className={styles.panelHeading}>Footstep Pulses</h2>
           </div>
             <div className={`${styles.panelBox} ${styles.totalPanel}`} aria-label="Total output panel">
               <h2 className={styles.panelHeading}>Total Output</h2>
+              <div className={styles.totalMetrics}>
+                <div className={styles.totalMetric}>
+                  <p className={styles.totalMetricLabel}>Cumulative Energy (Wh)</p>
+                  <p className={styles.totalMetricValue}>
+                    <span>{totalOutput.cumulativeEnergyWh.toFixed(2)}</span>
+                    <span className={styles.totalMetricUnit}>Wh</span>
+                  </p>
+                </div>
+                <div className={styles.totalMetric}>
+                  <p className={styles.totalMetricLabel}>Cumulative Power (W)</p>
+                  <p className={styles.totalMetricValue}>
+                    <span>{totalOutput.outputPowerW.toFixed(1)}</span>
+                    <span className={styles.totalMetricUnit}>W</span>
+                  </p>
+                </div>
+              </div>
             </div>
         </section>
       </BorderGlow>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './about.module.css'
 import LightPillar from './LightPillar'
 
+
 const About = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -15,8 +16,10 @@ const About = () => {
             { threshold: 0.15 }
         );
 
+
         const elements = document.querySelectorAll(`.${styles.fadeElement}`);
         elements.forEach((el) => observer.observe(el));
+
 
         return () => observer.disconnect();
     }, []);
@@ -71,4 +74,6 @@ const About = () => {
     )
 }
 
+
 export default About
+

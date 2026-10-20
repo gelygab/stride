@@ -19,6 +19,15 @@
 }
 
 .titlecontent h1, .titlecontent h2 {
+/* Blend-in effect */
+.background {
+  --feather: 100px;
+  padding-bottom: var(--feather);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - var(--feather)), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - var(--feather)), transparent 100%);
+}
+
+.titleH1, .titleH2 {
     color: white;
     text-align: center;
     justify-content: center;
