@@ -11,18 +11,13 @@ const steps = [
     },
     {
         title: "Bridge Rectifier",
-        description: "1N4148 diode bridge converts the AC pulses into usable DC current.",
+        description: "1N60 diode bridge converts the AC pulses into usable DC current.",
         image: assets.bridgerec
     },
     {
         title: "Supercapacitor",
         description: "A 5.5V supercapacitor bank buffers energy directly, step by step.",
         image: assets.supercap
-    },
-    {
-        title: "Voltage Regulator",
-        description: "A voltage regulator integrated circuit (IC) that outputs a fixed +5V DC supply.",
-        image: assets.lm7805
     },
     {
         title: "INA219 and ESP32",

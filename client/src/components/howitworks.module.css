@@ -145,8 +145,8 @@ margin-top: 2rem;
 /* card shapes*/
 .glassCard {
 position: absolute;
-width: 215px;
-height: 340px;
+width: 230px;
+height: 360px;
 background: linear-gradient(155deg, rgba(20, 173, 184, 0.12) 0%, rgba(4, 44, 47, 0.4) 100%);
 backdrop-filter: blur(14px);
 -webkit-backdrop-filter: blur(14px);
@@ -181,20 +181,19 @@ z-index: 20;
 
 
 /* Scattered fanned card */
-.card1 { transform: translateX(-480px) translateY(-120px) rotate(20deg); z-index: 1; }
-.card2 { transform: translateX(-260px) translateY(50px) rotate(-11deg); z-index: 2; }
-.card3 { transform: translateX(-80px) translateY(100px) rotate(-3deg); z-index: 3; }
-.card4 { transform: translateX(90px) translateY(90px) rotate(5deg); z-index: 4; }
-.card5 { transform: translateX(280px) translateY(30px) rotate(13deg); z-index: 2; }
-.card6 { transform: translateX(480px) translateY(-110px) rotate(-20deg); z-index: 1; }
+.card1 { transform: translateX(-485px) translateY(-110px) rotate(20deg); z-index: 1; }
+.card2 { transform: translateX(-195px) translateY(40px) rotate(-11deg); z-index: 2; }
+.card3 { transform: translateX(0px) translateY(90px) rotate(0deg); z-index: 3; }
+.card4 { transform: translateX(200px) translateY(30px) rotate(11deg); z-index: 2; }
+.card5 { transform: translateX(480px) translateY(-100px) rotate(-20deg); z-index: 1; }
+
 
 /* Hover effects fanned cards */
-.card1:hover { transform: translateX(-480px) translateY(-129px) rotate(0deg) scale(1); z-index: 10; }
-.card2:hover { transform: translateX(-260px) translateY(30px) rotate(0deg) scale(1); z-index: 10; }
-.card3:hover { transform: translateX(-80px) translateY(60px) rotate(0deg) scale(1); z-index: 10; }
-.card4:hover { transform: translateX(90px) translateY(70px) rotate(0deg) scale(1); z-index: 10; }
-.card5:hover { transform: translateX(280px) translateY(10px) rotate(0deg) scale(1); z-index: 10; }
-.card6:hover { transform: translateX(480px) translateY(-110px) rotate(0deg) scale(1); z-index: 10; }
+.card1:hover { transform: translateX(-435px) translateY(-135px) rotate(0deg) scale(1); z-index: 10; }
+.card2:hover { transform: translateX(-195px) translateY(30px) rotate(0deg) scale(1); z-index: 10; }
+.card3:hover { transform: translateX(0px) translateY(60px) rotate(0deg) scale(1); z-index: 10; }
+.card4:hover { transform: translateX(200px) translateY(10px) rotate(0deg) scale(1); z-index: 10; }
+.card5:hover { transform: translateX(430px) translateY(-110px) rotate(0deg) scale(1); z-index: 10; }
 
 /* inner card states */
 .cardFeaturedInner {
@@ -396,50 +395,55 @@ margin: 0;
 
   .glassCard {
     width: 170px;
-    height: 260px;
+    height: 265px;
   }
+
+
 
 
   .card1 {
-    transform: translateX(-300px) translateY(-100px) rotate(10deg);
+    transform: translateX(-300px) translateY(-90px) rotate(10deg);
   }
+
+
 
 
   .card2 {
-    transform: translateX(-150px) translateY(25px) rotate(-10deg);
+    transform: translateX(-120px) translateY(25px) rotate(-10deg);
   }
+
+
 
 
   .card3 {
-    transform: translateX(-50px) translateY(70px) rotate(-3deg);
+    transform: translateX(0px) translateY(70px) rotate(-3deg);
   }
+
+
 
 
   .card4 {
-    transform: translateX(50px) translateY(70px) rotate(4deg);
+    transform: translateX(125px) translateY(25px) rotate(10deg);
   }
+
+
 
 
   .card5 {
-    transform: translateX(150px) translateY(25px) rotate(10deg);
+    transform: translateX(300px) translateY(-80px) rotate(-10deg);
   }
 
 
-  .card6 {
-    transform: translateX(270px) translateY(-90px) rotate(-10deg);
-  }
 
 
   /* Hover effects fanned cards */
 .card1:hover { transform: translateX(-250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card2:hover { transform: translateX(-250px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
-.card3:hover { transform: translateX(-90px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card4:hover { transform: translateX(110px) translateY(70px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card5:hover { transform: translateX(250px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
-.card6:hover { transform: translateX(250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
-
-
+.card2:hover { transform: translateX(-120px) translateY(30px) rotate(0deg) scale(1.00); z-index: 10;transition: 0.4s ease; }
+.card3:hover { transform: translateX(0px) translateY(60px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card4:hover { transform: translateX(125px) translateY(10px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }
+.card5:hover { transform: translateX(250px) translateY(-130px) rotate(0deg) scale(1.00); z-index: 10; transition: 0.4s ease; }    
 }
+
 
 
 /* Responsive Breakpoint for Phone */
