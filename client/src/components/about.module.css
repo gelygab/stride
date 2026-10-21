@@ -73,11 +73,13 @@ html, body {
     align-items: center;
     gap: 40px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .leftSide {
     border: 3px solid white;
     justify-content: center;
+    box-sizing: border-box;
     text-align: left;
     width: 30%;
     margin: auto;
@@ -110,6 +112,8 @@ html, body {
     padding-bottom: 9px;
     font-size: 1.2rem;
     font-weight: 450;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
 }
 
@@ -117,17 +121,22 @@ html, body {
     justify-content: justify;
     padding-bottom: 25px;
     font-size: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .aboutH5 {
     font-size: 0.7rem;
     font-weight: 350;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .rightSide {
     text-align: right;
     border: 3px solid white;
     width: 30%;
+    box-sizing: border-box;
     justify-content: end;
     margin: auto;
     padding: 70px 65px;    
