@@ -121,7 +121,7 @@ const Dashboard = ({ onBack }) => {
         outputPowerW: incomingPower,
       }));
       
-      const intervalId = window.setInterval(() => {
+      const _intervalId = window.setInterval(() => {
         if (!hasBackendFootstepCount.current) {
           setFootstepPulseCount((count) => count + (Math.random() < 0.25 ? 0 : 1));
         }
