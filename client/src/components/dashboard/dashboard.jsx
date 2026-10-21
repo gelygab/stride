@@ -127,7 +127,7 @@ const Dashboard = ({ onBack }) => {
         }
       }, 1500);
     }
-
+    socket.on("telemetry_data", handleTelemetry);
     return () => socket.off("telemetry_data", handleTelemetry);
   }, []);
 
