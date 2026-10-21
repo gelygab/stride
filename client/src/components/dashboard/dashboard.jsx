@@ -18,8 +18,8 @@ import styles from './dashboard.module.css';
 // import { create } from "node:vfs";
 
 
-
-const socket = io.connect("http://localhost:3001");
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "  https://algebra-outhouse-compel.ngrok-free.dev";
+const socket = io.connect(backendUrl);
 
 
 const formatTime = (timestamp) =>
@@ -127,7 +127,7 @@ const Dashboard = ({ onBack }) => {
         }
       }, 1500);
     }
-
+    socket.on("telemetry_data", handleTelemetry);
     return () => socket.off("telemetry_data", handleTelemetry);
   }, []);
 
